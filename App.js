@@ -1,11 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import Splash from './src/screens/Splash/Splash';
 
 const App = () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{backgroundColor: 'green'}}>HEllo World</Text>
-    </View>
+    <Splash/>
   );
 };
 export default App;
