@@ -1,5 +1,7 @@
 import React from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
+import { theme } from '../../assets/constants/Theme';
+
 const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
@@ -7,9 +9,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: theme.colors.BG,
   },
   mainText: {
-    backgroundColor: 'red',
+    color: theme.colors.BTN,
+    fontSize: theme.colors.fontSize,
   }
 });
 
