@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
 export const theme = {
   colors: {
-    BG: '#194787',
+    BG: '#0B2265',
     grayFont: '#424C51',
     primarydark: '#111945',
     BTN: '#EB2227',
