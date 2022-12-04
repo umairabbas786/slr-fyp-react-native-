@@ -1,18 +1,19 @@
 import React, {useRef, useEffect} from 'react';
-import {View, Text, Image, Animated, Dimensions} from 'react-native';
-import {theme} from '../../assets/constants/Theme';
+import {View, Animated, Dimensions} from 'react-native';
 import styles from './styles';
+// import {useDispatch} from 'react-redux';
 
-export default function Splash() {
+export default function Splash({navigation}) {
   const moveImage = useRef(
     new Animated.Value(Dimensions.get('window').height),
   ).current;
   // const dispatch = useDispatch();
   useEffect(() => {
     handleMoveImage();
-    // setTimeout(() => {
-    //   navigation.navigate('Welcome');
-    // }, 2500);
+    // dispatch(setScreen('authTab'));
+    setTimeout(() => {
+      navigation.navigate('Welcome');
+    }, 2500);
   });
 
   const handleMoveImage = () => {
