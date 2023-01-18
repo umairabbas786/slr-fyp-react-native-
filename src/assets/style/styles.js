@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   mainText: {
     color: theme.colors.BTN,
     fontSize: theme.colors.fontSize,
-  }
+  },
 });
 
 export default styles;
