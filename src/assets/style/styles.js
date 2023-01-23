@@ -55,6 +55,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  buttonDarkSignup: {
+    marginTop: 10,
+    backgroundColor: 'black',
+    height: 45,
+    borderRadius: 15,
+    alignItems: 'center',
+    padding: 10,
+    width: '48%',
+  },
+  containerSignup: {
+    elevation: 2,
+    height: 125,
+    width: 125,
+    backgroundColor: '#efefef',
+    position: 'relative',
+    borderRadius: 999,
+    overflow: 'hidden',
+    flex: 1,
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  uploadBtnContainerSignup: {
+    opacity: 0.7,
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'lightgrey',
+    width: '100%',
+    height: '30%',
+  },
+  uploadBtnSignup: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: 'center',
+  },
 });
 
 export default styles;
