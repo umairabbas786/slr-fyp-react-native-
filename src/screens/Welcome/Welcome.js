@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import styles from '../../assets/style/styles';
 
-export default function Welcome() {
+export default function Welcome({ navigation }) {
   return (
     <View style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -39,7 +39,8 @@ export default function Welcome() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonLight}
-            onPress={() => Alert.alert('Register')}>
+            // onPress={() => Alert.alert('Register')}
+            onPress={() => navigation.navigate('Signup')}>
             <Text style={styles.buttonTextLight}>Create Account</Text>
           </TouchableOpacity>
         </View>
