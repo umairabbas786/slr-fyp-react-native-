@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   uploadBtnSignup: {
     display: 'flex',
-    alignItems: "center",
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });
