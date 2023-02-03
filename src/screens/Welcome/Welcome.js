@@ -32,6 +32,7 @@ export default function Welcome({ navigation }) {
             placeholder="Enter your Password"
             placeholderTextColor={'grey'}
           />
+          <Text onPress={() => Alert.alert('forget password')} style={{ color: 'white', textAlign: 'right', marginBottom: 5, marginRight: 5, textDecorationLine: 'underline' }}>Forget Password</Text>
           <TouchableOpacity
             style={styles.buttonDark}
             onPress={() => Alert.alert('Login')}>
@@ -39,7 +40,6 @@ export default function Welcome({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonLight}
-            // onPress={() => Alert.alert('Register')}
             onPress={() => navigation.navigate('Signup')}>
             <Text style={styles.buttonTextLight}>Create Account</Text>
           </TouchableOpacity>

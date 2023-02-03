@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import styles from '../../assets/style/styles';
-import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import fontawesome from '@fortawesome/fontawesome';
 import { faCamera } from '@fortawesome/fontawesome-free-solid';
