@@ -17,7 +17,17 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: 'white',
     borderRadius: 15,
-    // width: '100%',
+    width: '100%',
+    fontSize: 16,
+    height: 45,
+    marginBottom: 10,
+    color: 'black',
+    paddingHorizontal: 10,
+  },
+  customInputField: {
+    backgroundColor: 'white',
+    borderRadius: 15,
+    width: '95%',
     height: 45,
     marginBottom: 10,
     color: 'black',
@@ -42,7 +52,7 @@ const styles = StyleSheet.create({
   buttonTextDark: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -50,7 +60,7 @@ const styles = StyleSheet.create({
   buttonTextLight: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -58,6 +68,15 @@ const styles = StyleSheet.create({
   buttonDarkSignup: {
     marginTop: 10,
     backgroundColor: 'black',
+    height: 45,
+    borderRadius: 15,
+    alignItems: 'center',
+    padding: 10,
+    width: '48%',
+  },
+  buttonLightSignup: {
+    marginTop: 10,
+    backgroundColor: 'white',
     height: 45,
     borderRadius: 15,
     alignItems: 'center',
