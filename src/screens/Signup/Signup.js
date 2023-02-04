@@ -59,7 +59,7 @@ export default function Signup({ navigation }) {
                         </View>
                     </View>
                     <Text style={{ marginBottom: 20, textAlign: 'center', color: 'white' }}>Upload Profile Picture</Text>
-                    <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Select Account Type: </Text>
+                    <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Sign up as </Text>
                     <View style={{ flex: 1, flexDirection: 'row', marginBottom: 15, justifyContent: 'space-evenly' }}>
                         <TouchableOpacity
                             style={student === false ? styles.buttonLightSignup : styles.buttonDarkSignup}
