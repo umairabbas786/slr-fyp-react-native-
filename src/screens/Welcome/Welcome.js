@@ -32,7 +32,7 @@ export default function Welcome({ navigation }) {
             placeholder="Enter your Password"
             placeholderTextColor={'grey'}
           />
-          <Text onPress={() => Alert.alert('forget password')} style={{ color: 'white', textAlign: 'right', marginBottom: 5, marginRight: 5, textDecorationLine: 'underline' }}>Forget Password</Text>
+          <Text onPress={() => navigation.navigate('ResetPassword')} style={{ color: 'white', textAlign: 'right', marginBottom: 5, marginRight: 5, textDecorationLine: 'underline' }}>Forget Password</Text>
           <TouchableOpacity
             style={styles.buttonDark}
             onPress={() => Alert.alert('Login')}>

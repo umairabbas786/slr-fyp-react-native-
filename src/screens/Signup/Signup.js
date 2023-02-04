@@ -40,7 +40,9 @@ export default function Signup({ navigation }) {
         <View style={styles.mainContainer}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{ flex: 0.40, marginHorizontal: 20, marginVertical: 25 }}>
-                    <Text style={{ color: 'white', marginBottom: 20, marginLeft: 5, textAlign: 'left', fontSize: 26 }}>Sign Up {"\n"}
+                    <Text style={{ color: 'white', marginBottom: 20, marginLeft: 5, textAlign: 'left', fontSize: 26 }}>
+                        <FontAwesome name={'chevron-left'} color={'#fff'} size={22} onPress={() => navigation.goBack()} /> {""}
+                        Sign Up {"\n"}
                         <Text style={{ fontSize: 16, }}>
                             Become Our Member
                         </Text>
@@ -59,7 +61,7 @@ export default function Signup({ navigation }) {
                         </View>
                     </View>
                     <Text style={{ marginBottom: 20, textAlign: 'center', color: 'white' }}>Upload Profile Picture</Text>
-                    <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Sign up as </Text>
+                    <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Continue as </Text>
                     <View style={{ flex: 1, flexDirection: 'row', marginBottom: 15, justifyContent: 'space-evenly' }}>
                         <TouchableOpacity
                             style={student === false ? styles.buttonLightSignup : styles.buttonDarkSignup}
@@ -173,7 +175,7 @@ export default function Signup({ navigation }) {
                             />
                             <TouchableOpacity
                                 style={styles.buttonDark}
-                                onPress={() => Alert.alert('Sign up')}>
+                                onPress={() => navigation.navigate('Otp',{ name: 'signup' })}>
                                 <Text style={styles.buttonTextDark}>Sign up</Text>
                             </TouchableOpacity>
                             <View style={{ marginBottom: 20 }}>
@@ -279,7 +281,7 @@ export default function Signup({ navigation }) {
                                 />
                                 <TouchableOpacity
                                     style={styles.buttonDark}
-                                    onPress={() => Alert.alert('Sign up')}>
+                                    onPress={() => navigation.navigate('Otp',{name: 'signup'})}>
                                     <Text style={styles.buttonTextDark}>Sign up</Text>
                                 </TouchableOpacity>
                                 <View style={{marginBottom: 20}}>

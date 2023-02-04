@@ -109,6 +109,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputFieldWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // alignSelf: 'flex-start',
+    marginTop: 20
+  },
+  otpBox: {
+    borderBottomWidth: 0.8,
+    borderColor: 'white',
+    height: 50,
+    width: 40,
+    alignItems: 'center',
+    marginRight: 5,
+    justifyContent: 'flex-end',
+  },
+  otp: {
+    color: 'white',
+    fontWeight: '500',
+    fontSize: 25,
+  },
+  inputFieldOtp: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    color: 'transparent',
+  },
 });
 
 export default styles;
