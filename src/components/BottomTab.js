@@ -106,15 +106,6 @@ const CustomTabBar = props => {
             marginTop: 'auto',
           }}>
           <FontAwesome name={'plus'} color={props.state.index === 2 ? '#0B2265' : '#D2D2D2'} size={26} />
-          {/* <Svg xmlns="http://www.w3.org/2000/svg" width={24} height={24}>
-            <G data-name="Mask Group 57" clipPath="url(#a)">
-              <Path
-                data-name="Path 144"
-                d="M17.195 2A6.726 6.726 0 0 0 12 4.416 6.635 6.635 0 0 0 6.805 2 6.827 6.827 0 0 0 0 8.85c0 6.483 11.24 12.813 11.7 13.057a.544.544 0 0 0 .608 0C12.76 21.663 24 15.425 24 8.85A6.827 6.827 0 0 0 17.195 2Z"
-                fill={props.state.index === 2 ? '#0B2265' : '#D2D2D2'}
-              />
-            </G>
-          </Svg> */}
         </View>
         <Text
           style={styles.bottomTabTag(props.state.index === 2 ? true : false)}>
