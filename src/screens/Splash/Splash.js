@@ -12,7 +12,7 @@ export default function Splash({navigation}) {
     handleMoveImage();
     // dispatch(setScreen('authTab'));
     setTimeout(() => {
-      navigation.navigate('Welcome');
+      navigation.navigate('Login');
     }, 2500);
   });
 

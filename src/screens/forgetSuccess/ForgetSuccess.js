@@ -26,7 +26,7 @@ export default function ForgetSuccess({ navigation }) {
                 <Text style={{ color: 'white', marginBottom: 20, fontWeight: '400', textAlign: 'center', fontSize: 16 }}>your password have been updated!</Text>
                 <TouchableOpacity
                     style={styles.buttonDark}
-                    onPress={() => navigation.navigate('Welcome')}>
+                    onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.buttonTextDark}>Return To Login</Text>
                 </TouchableOpacity>
             </ScrollView>

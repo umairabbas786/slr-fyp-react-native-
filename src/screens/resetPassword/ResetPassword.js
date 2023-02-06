@@ -44,7 +44,7 @@ export default function ResetPassword({ navigation }) {
                     onPress={() => navigation.navigate('Otp', { name: 'reset' })}>
                     <Text style={styles.buttonTextDark}>Verify Email</Text>
                 </TouchableOpacity>
-                <Text onPress={() => navigation.navigate('Welcome')} style={{ marginBottom: 10, marginTop: 5, textAlign: 'center', color: 'white', textDecorationLine: 'underline' }}>Back to login</Text>
+                <Text onPress={() => navigation.navigate('Login')} style={{ marginBottom: 10, marginTop: 5, textAlign: 'center', color: 'white', textDecorationLine: 'underline' }}>Back to login</Text>
             </ScrollView>
         </View>
     );

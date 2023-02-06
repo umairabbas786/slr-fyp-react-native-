@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import styles from '../../assets/style/styles';
+import styles from '../assets/style/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import fontawesome from '@fortawesome/fontawesome';
 import { faCamera, faChevronDown, faChevronUp } from '@fortawesome/fontawesome-free-solid';
@@ -8,7 +8,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
-export default function Signup({ navigation }) {
+export default function SignupScreen({ navigation }) {
     fontawesome.library.add(faCamera);
 
     const [image, setImage] = useState(null);
@@ -181,7 +181,7 @@ export default function Signup({ navigation }) {
                             <View style={{ marginBottom: 20 }}>
                                 <TouchableOpacity
                                     style={styles.buttonLight}
-                                    onPress={() => navigation.navigate('Welcome')}>
+                                    onPress={() => navigation.navigate('Login')}>
                                     <Text style={styles.buttonTextLight}>Back to Login</Text>
                                 </TouchableOpacity>
                             </View>
@@ -287,7 +287,7 @@ export default function Signup({ navigation }) {
                                 <View style={{marginBottom: 20}}>
                                     <TouchableOpacity
                                         style={styles.buttonLight}
-                                        onPress={() => navigation.navigate('Welcome')}>
+                                        onPress={() => navigation.navigate('Login')}>
                                         <Text style={styles.buttonTextLight}>Back to Login</Text>
                                     </TouchableOpacity>
                                 </View>
