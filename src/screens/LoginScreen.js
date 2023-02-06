@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }) {
           <Text onPress={() => navigation.navigate('ResetPassword')} style={{ color: 'white', textAlign: 'right', marginBottom: 5, marginRight: 5, textDecorationLine: 'underline' }}>Forget Password</Text>
           <TouchableOpacity
             style={styles.buttonDark}
-            onPress={() => Alert.alert('Login')}>
+            onPress={() => navigation.navigate('Main')}>
             <Text style={styles.buttonTextDark}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
