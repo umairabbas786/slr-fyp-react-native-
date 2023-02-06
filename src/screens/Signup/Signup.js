@@ -81,7 +81,7 @@ export default function Signup({ navigation }) {
                                     <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>First Name</Text>
                                     <TextInput
                                         style={styles.customInputField}
-                                        placeholder="Enter your First Name"
+                                        placeholder="First Name"
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -89,7 +89,7 @@ export default function Signup({ navigation }) {
                                     <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>Last Name</Text>
                                     <TextInput
                                         style={styles.customInputField}
-                                        placeholder="Enter your Last Name"
+                                        placeholder="Last Name"
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -193,7 +193,7 @@ export default function Signup({ navigation }) {
                                         <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>First Name</Text>
                                         <TextInput
                                             style={styles.customInputField}
-                                            placeholder="Enter your First Name"
+                                            placeholder="First Name"
                                             placeholderTextColor={'grey'}
                                         />
                                     </View>
@@ -201,7 +201,7 @@ export default function Signup({ navigation }) {
                                         <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>Last Name</Text>
                                         <TextInput
                                             style={styles.customInputField}
-                                            placeholder="Enter your Last Name"
+                                            placeholder="Last Name"
                                             placeholderTextColor={'grey'}
                                         />
                                     </View>
