@@ -13,8 +13,8 @@ export default function EditProfile({ navigation }) {
     fontawesome.library.add(faCamera);
 
     const [image, setImage] = useState('https://i.pinimg.com/originals/d7/0a/3a/d70a3a4ded27c9f46b5e1cce8ccf2d89.jpg');
-    const [student, setStudent] = useState(false);
-    const [teacher, setTeacher] = useState(true);
+    const [student, setStudent] = useState(true);
+    const [teacher, setTeacher] = useState(false);
     const [gender, setGender] = useState('');
 
     const handleMale = () => {
@@ -89,12 +89,12 @@ export default function EditProfile({ navigation }) {
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                    style={gender === 'male' ? styles.buttonDarkSignup : styles.buttonLightSignup}
+                                    style={gender === 'male' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleMale}>
                                     <Text style={gender === 'male' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    style={gender === 'female' ? styles.buttonDarkSignup : styles.buttonLightSignup}
+                                    style={gender === 'female' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleFemale}>
                                     <Text style={gender === 'female' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
@@ -141,7 +141,7 @@ export default function EditProfile({ navigation }) {
                                 }}
                             />
                             <TouchableOpacity
-                                style={styles.buttonDark}
+                                style={styles.buttonProfileDark}
                                 onPress={() => navigation.goBack()}>
                                 <Text style={styles.buttonTextDark}>Save Changes</Text>
                             </TouchableOpacity>
@@ -183,12 +183,12 @@ export default function EditProfile({ navigation }) {
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                    style={gender === 'male' ? styles.buttonDarkSignup : styles.buttonLightSignup}
+                                        style={gender === 'male' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleMale}>
                                     <Text style={gender === 'male' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    style={gender === 'female' ? styles.buttonDarkSignup : styles.buttonLightSignup}
+                                        style={gender === 'female' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleFemale}>
                                     <Text style={gender === 'female' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
@@ -234,7 +234,7 @@ export default function EditProfile({ navigation }) {
                                 }}
                             />
                             <TouchableOpacity
-                                style={styles.buttonDark}
+                                style={styles.buttonProfileDark}
                                 onPress={() => navigation.goBack()}>
                                 <Text style={styles.buttonTextDark}>Save Changes</Text>
                             </TouchableOpacity>

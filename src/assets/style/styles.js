@@ -41,6 +41,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  buttonProfileDark: {
+    marginTop: 10,
+    backgroundColor: theme.colors.BG,
+    height: 45,
+    borderRadius: 15,
+    alignItems: 'center',
+    padding: 10,
+  },
   buttonLight: {
     marginTop: 10,
     backgroundColor: 'white',
@@ -68,6 +76,15 @@ const styles = StyleSheet.create({
   buttonDarkSignup: {
     marginTop: 10,
     backgroundColor: 'black',
+    height: 45,
+    borderRadius: 15,
+    alignItems: 'center',
+    padding: 10,
+    width: '48%',
+  },
+  buttonDarkProfileSignup: {
+    marginTop: 10,
+    backgroundColor: theme.colors.BG,
     height: 45,
     borderRadius: 15,
     alignItems: 'center',

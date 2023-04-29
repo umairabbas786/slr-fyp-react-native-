@@ -68,14 +68,13 @@ function Settings({ navigation }) {
                   }}
               />
               <CustomButton
-                  children="Log Out"
                   color={theme.colors.primarydark}
                   txtColor="white"
+                  children="Delete account"
                   onPress={() => {
                       navigation.navigate('Login');
                   }}
               />
-              <CustomButton children="Delete account" />
 
               <View style={{ height: 50 }} />
           </ScrollView>

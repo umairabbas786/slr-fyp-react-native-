@@ -56,9 +56,9 @@ const ProfileScreen = ({ navigation }) => {
       <Text style={styles.completedTag}>Email Address</Text>
       <View style={styles.rowButtonContainer}>
         <CircleButton
-          tag="Preferences"
-          icon="sliders"
-          onPress={() => navigation.navigate('MyPrefrences')}
+          tag="Log out"
+          icon="sign-out"
+          onPress={() => navigation.navigate('Login')}
         />
         <CircleButton
           bold
