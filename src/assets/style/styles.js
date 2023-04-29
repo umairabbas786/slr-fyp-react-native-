@@ -139,6 +139,87 @@ const styles = StyleSheet.create({
     bottom: 0,
     color: 'transparent',
   },
+
+  //profile screen
+  profileIconContainer: bold => {
+    return {
+      width: bold ? (width / 100) * 25 : (width / 100) * 18,
+      height: bold ? (width / 100) * 25 : (width / 100) * 18,
+      borderRadius: 100,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      elevation: 15,
+      shadowColor: '#0B2265',
+    };
+  },
+  profileIconTag: bold => {
+    return {
+      color: '#1A1A1A',
+      fontSize: bold ? 16 : 12,
+      fontWeight: 'bold',
+      marginTop: 5,
+      width: bold ? (width / 100) * 30 : (width / 100) * 20,
+      textAlign: 'center',
+    };
+  },
+  profileMainContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  profileMainContainerStyle: {
+    paddingBottom: 100,
+    paddingTop: 100,
+  },
+  profileWrapper: {
+    alignItems: 'center',
+    marginTop: 30,
+    justifyContent: 'center',
+  },
+  profile: {
+    position: 'absolute',
+    width: 133,
+    height: 133,
+    resizeMode: 'cover',
+    borderRadius: 100,
+    elevation: 10,
+  },
+  profileButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 160,
+    height: 35,
+    borderRadius: 100,
+    position: 'absolute',
+    backgroundColor: '#0B2265',
+    bottom: 0,
+    paddingHorizontal: 20,
+  },
+  profileTag: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  profileName: {
+    color: '#1A1A1A',
+    textAlign: 'center',
+    marginTop: 20,
+    fontWeight: 'bold',
+    fontSize: 28,
+  },
+  completedTag: {
+    color: '#1A1A1A',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  rowButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: '10%',
+    marginTop: 25,
+  },
 });
 
 export default styles;

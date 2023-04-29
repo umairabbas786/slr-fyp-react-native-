@@ -3,7 +3,7 @@ import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView } fro
 import styles from '../assets/style/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import fontawesome from '@fortawesome/fontawesome';
-import { faCamera, faChevronDown, faChevronUp } from '@fortawesome/fontawesome-free-solid';
+import { faCamera } from '@fortawesome/fontawesome-free-solid';
 import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
