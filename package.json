@@ -20,6 +20,7 @@
     "react": "18.2.0",
     "react-native": "0.71.2",
     "react-native-circular-progress-indicator": "^4.4.2",
+    "react-native-elements": "^3.4.3",
     "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-picker-select": "^8.0.4",

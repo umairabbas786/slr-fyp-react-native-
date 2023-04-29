@@ -9,6 +9,9 @@ import ForgetSuccess from './src/screens/forgetSuccess/ForgetSuccess';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import MainScreen from './src/screens/MainScreen';
+import Settings from './src/screens/Settings';
+import SecurityPrivacy from './src/screens/Security&Privacy';
+import EditProfile from './src/screens/EditProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +28,9 @@ const App = () => {
         <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="ForgetSuccess" component={ForgetSuccess} />
         <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="SecurityPrivacy" component={SecurityPrivacy} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

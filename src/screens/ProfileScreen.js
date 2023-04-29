@@ -24,7 +24,7 @@ const CircleButton = ({ tag, bold, icon, onPress }) => {
   );
 };
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   return (
     <ScrollView
       contentContainerStyle={styles.profileMainContainerStyle}
@@ -72,7 +72,7 @@ const ProfileScreen = () => {
           tag="Settings"
           icon="gear"
           onPress={() => {
-            navigation.navigate('Setting');
+            navigation.navigate('Settings');
           }}
         />
       </View>

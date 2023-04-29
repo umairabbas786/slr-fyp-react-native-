@@ -220,6 +220,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: '10%',
     marginTop: 25,
   },
+  texted: {
+    fontSize: 17,
+    width: '90%',
+    alignSelf: 'center',
+    marginVertical: 5,
+    fontSize: 14,
+  },
 });
 
 export default styles;
