@@ -215,8 +215,13 @@ const styles = StyleSheet.create({
   },
   profileTag: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '500',
+    textAlign: 'center',
+    alignItems: 'center',
+    flex: 1,
+    alignContent: 'center',
+    alignSelf: 'center'
   },
   profileName: {
     color: '#1A1A1A',

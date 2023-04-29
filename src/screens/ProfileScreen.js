@@ -48,8 +48,7 @@ const ProfileScreen = ({ navigation }) => {
           }}
         />
         <TouchableOpacity activeOpacity={0.7} style={styles.profileButton}>
-          <Text style={styles.profileTag}>View Profile</Text>
-          <AntDesign name="checkcircle" color="white" size={20} />
+          <Text style={styles.profileTag}>Student/Teacher</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.profileName}>User Name</Text>
