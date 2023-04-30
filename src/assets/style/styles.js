@@ -249,6 +249,126 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontSize: 14,
   },
+  //chat screen
+  customHeading: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#1A1A1A',
+    paddingLeft: '5%',
+    marginBottom: 10,
+    paddingTop: 15
+  },
+  matchedWrapper: {
+    paddingVertical: 15,
+    backgroundColor: '#ECECEC',
+  },
+  matchedContainerStyle: {
+    paddingHorizontal: '5%',
+  },
+  conversationSeparator: {
+    backgroundColor: '#D2D2D2',
+    height: 1,
+    width: '90%',
+    alignSelf: 'center',
+  },
+  bottomHiddenWrapper: {
+    backgroundColor: 'white',
+    // position: 'absolute',
+    // bottom: 0,
+    width: '100%',
+    height: 110,
+    elevation: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+    paddingRight: '2.5%',
+  },
+  matchedContainer: {
+    alignItems: 'center',
+    paddingBottom: 9,
+  },
+  matchedImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: '#0B2265',
+  },
+  matchedHeart: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  conversationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingHorizontal: '5%',
+  },
+  conversationImage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  conversationProfile: {
+    width: 45,
+    height: 45,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: '#0B2265',
+  },
+  conversationTextWrapper: {
+    marginLeft: 10,
+  },
+  conversationName: {
+    color: '#1A1A1A',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  conversationDesc: {
+    color: '#1A1A1A',
+    fontWeight: 'normal',
+    fontSize: 12,
+  },
+  conversationFloatText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: '500',
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+  },
+  conversationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 100,
+    backgroundColor: '#0B2265',
+  },
+  bottomCont: {
+    width: '100%',
+    alignItems: 'center',
+    height: 45,
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    // position: 'absolute',
+  },
+  messageInputCont: {
+    width: '90%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    height: 40,
+    marginBottom: 5,
+  },
+  inputCont: {
+    backgroundColor: '#EAEEF1',
+    padding: 7,
+    borderRadius: 100,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    alignItems: 'center',
+  },
 });
 
 export default styles;

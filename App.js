@@ -12,6 +12,7 @@ import MainScreen from './src/screens/MainScreen';
 import Settings from './src/screens/Settings';
 import SecurityPrivacy from './src/screens/Security&Privacy';
 import EditProfile from './src/screens/EditProfile';
+import Message from './src/screens/Message';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const App = () => {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="SecurityPrivacy" component={SecurityPrivacy} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Message" component={Message} />
       </Stack.Navigator>
     </NavigationContainer>
   );

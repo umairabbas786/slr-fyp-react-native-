@@ -1,6 +1,5 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import React from "react";
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import CircularProgressBase from 'react-native-circular-progress-indicator';
 import styles from "../assets/style/styles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
