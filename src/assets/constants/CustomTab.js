@@ -21,8 +21,9 @@ const CustomTab = ({ type, title, right, isEnabled, setIsEnabled, onPress }) => 
                 alignItems: 'center',
                 paddingHorizontal: 20,
                 marginTop: 10,
+                borderRadius: 10
             }}>
-            <Text style={{ fontSize: 17 }}>{title}</Text>
+            <Text style={{ fontSize: 17, color: 'black' }}>{title}</Text>
 
             {type === 'switch' ? (
                 <Switch

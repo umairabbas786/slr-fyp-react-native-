@@ -248,6 +248,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 5,
     fontSize: 14,
+    color: 'black',
   },
   //chat screen
   customHeading: {
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 100,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#0B2265',
   },
   conversationTextWrapper: {
@@ -368,6 +369,54 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     alignItems: 'center',
+  },
+  //home screen
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 50,
+    paddingHorizontal: '5%',
+    backgroundColor: 'white',
+    elevation: 2,
+    borderRadius: 20,
+    marginHorizontal: 10,
+    marginVertical: 5,
+  },
+  cardHome: {
+    backgroundColor: 'white',
+    elevation: 2,
+    borderRadius: 20,
+    marginHorizontal: 10,
+    marginTop: 20,
+    paddingHorizontal: '5%',
+    height: 'auto',
+    paddingVertical: '5%',
+    fontSize: 18,
+  },
+  cardInner: {
+    paddingTop: 10,
+    flexDirection: 'row',
+
+  },
+  cardTitle: {
+    color: 'black',
+    fontWeight: 700,
+    paddingLeft: 10
+  },
+  cardInnerImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#0B2265',
+  },
+  likeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 40,
+    marginTop: 5,
   },
 });
 

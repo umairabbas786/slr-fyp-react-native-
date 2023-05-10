@@ -42,12 +42,10 @@ const ProfileScreen = ({ navigation }) => {
         />
         <Image
           style={styles.profile}
-          source={{
-            uri: 'https://i.pinimg.com/originals/d7/0a/3a/d70a3a4ded27c9f46b5e1cce8ccf2d89.jpg',
-          }}
+          source={require('../assets/images/img1.png')}
         />
         <TouchableOpacity activeOpacity={0.7} style={styles.profileButton}>
-          <Text style={styles.profileTag}>Student/Teacher</Text>
+          <Text style={styles.profileTag}>Student</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.profileName}>User Name</Text>

@@ -13,6 +13,7 @@ import Settings from './src/screens/Settings';
 import SecurityPrivacy from './src/screens/Security&Privacy';
 import EditProfile from './src/screens/EditProfile';
 import Message from './src/screens/Message';
+import NotificationScreen from './src/screens/NotificationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ const App = () => {
         <Stack.Screen name="SecurityPrivacy" component={SecurityPrivacy} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Message" component={Message} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

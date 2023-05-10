@@ -38,11 +38,10 @@ const CustomTabBar = props => {
         overflow: 'visible',
         flexDirection: 'row',
         backgroundColor: 'white',
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
         position: 'absolute',
         bottom: 0,
-        elevation: 10,
+        elevation: 2,
+        borderRadius: 20,
       }}>
       <TouchableOpacity
         activeOpacity={1}
