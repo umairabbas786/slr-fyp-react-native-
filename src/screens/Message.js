@@ -74,8 +74,16 @@ function Message({ navigation }) {
                 }}>
                 <Text
                     style={{
+                        color: 'grey',
+                        paddingBottom: 1,
+                        fontSize: 14,
+                        fontWeight: 600,
+                    }}>umair abbas.</Text>
+                <Text
+                    style={{
                         color: item.mine ? 'white' : '#1A1A1A',
                         fontSize: 14,
+                        fontWeight: 800
                     }}>
                     {item.msg}
                 </Text>
@@ -140,21 +148,6 @@ function Message({ navigation }) {
                       </Text>
                   </View>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Feather name="video" color={'white'} size={18} />
-                  <Feather
-                      name="phone"
-                      color={'white'}
-                      size={18}
-                      style={{ marginLeft: 10 }}
-                  />
-                  <Entypo
-                      name="dots-three-horizontal"
-                      color={'white'}
-                      size={18}
-                      style={{ marginLeft: 10 }}
-                  />
-              </View>
           </View>
           <FlatList
               data={data}
@@ -195,7 +188,7 @@ function Message({ navigation }) {
                               backgroundColor: '#EAEEF1',
                               padding: 7,
                               borderRadius: 100,
-                              width: '85%',
+                              width: '88%',
                               flexDirection: 'row',
                               justifyContent: 'space-between',
                               paddingHorizontal: 10,
@@ -214,7 +207,6 @@ function Message({ navigation }) {
                               }}
                               value={message}
                           />
-                          <Entypo name="attachment" color={'#646B75'} size={18} />
                       </View>    
                 <TouchableOpacity
                     activeOpacity={1}

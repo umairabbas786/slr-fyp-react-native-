@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styles from "../assets/style/styles";
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -29,7 +29,12 @@ const HomeScreen = ({ navigation }) => {
         <Text></Text>
       </View>
       <ScrollView>
-        <View style={styles.cardHome}>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
           <Text style={{
             'color': '#000',
             'fontWeight': '800',
@@ -58,8 +63,13 @@ const HomeScreen = ({ navigation }) => {
               'fontSize': 16
             }}>No Answer yet</Text>
           </View>
-        </View>
-        <View style={styles.cardHome}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
           <Text style={{
             'color': '#000',
             'fontWeight': '800',
@@ -88,8 +98,13 @@ const HomeScreen = ({ navigation }) => {
               'fontSize': 16
             }}>No Answer yet</Text>
           </View>
-        </View>
-        <View style={styles.cardHome}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
           <Text style={{
             'color': '#000',
             'fontWeight': '800',
@@ -118,8 +133,13 @@ const HomeScreen = ({ navigation }) => {
               'fontSize': 16
             }}>No Answer yet</Text>
           </View>
-        </View>
-        <View style={styles.cardHome}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
           <Text style={{
             'color': '#000',
             'fontWeight': '800',
@@ -148,8 +168,13 @@ const HomeScreen = ({ navigation }) => {
               'fontSize': 16
             }}>No Answer yet</Text>
           </View>
-        </View>
-        <View style={styles.cardHome}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
           <Text style={{
             'color': '#000',
             'fontWeight': '800',
@@ -178,7 +203,7 @@ const HomeScreen = ({ navigation }) => {
               'fontSize': 16
             }}>No Answer yet</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
