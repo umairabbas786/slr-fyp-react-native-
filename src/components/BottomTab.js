@@ -1,22 +1,23 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from "../screens/HomeScreen";
-import ChatScreen from "../screens/ChatScreen";
-import Svg, { Path, G } from 'react-native-svg';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import HomeScreen from '../screens/HomeScreen';
+import ChatScreen from '../screens/ChatScreen';
+import Svg, {Path, G} from 'react-native-svg';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import ConnectScreen from "../screens/ConnectScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import PostScreen from "../screens/PostScreen";
+import ConnectScreen from '../screens/ConnectScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import PostScreen from '../screens/PostScreen';
 
 const BottomTab = () => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="Home"
       tabBar={props => <CustomTabBar {...props} />}
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Connect" component={ConnectScreen} />
@@ -84,7 +85,11 @@ const CustomTabBar = props => {
           style={{
             marginTop: 'auto',
           }}>
-          <FontAwesome name={'users'} color={props.state.index === 1 ? '#0B2265' : '#D2D2D2'} size={24} />
+          <FontAwesome
+            name={'users'}
+            color={props.state.index === 1 ? '#0B2265' : '#D2D2D2'}
+            size={24}
+          />
         </View>
         <Text
           style={styles.bottomTabTag(props.state.index === 1 ? true : false)}>
@@ -98,13 +103,17 @@ const CustomTabBar = props => {
           width: '20%',
           alignItems: 'center',
           height: '100%',
-          borderColor: '#000'
+          borderColor: '#000',
         }}>
         <View
           style={{
             marginTop: 'auto',
           }}>
-          <FontAwesome name={'plus'} color={props.state.index === 2 ? '#0B2265' : '#D2D2D2'} size={26} />
+          <FontAwesome
+            name={'plus'}
+            color={props.state.index === 2 ? '#0B2265' : '#D2D2D2'}
+            size={26}
+          />
         </View>
         <Text
           style={styles.bottomTabTag(props.state.index === 2 ? true : false)}>

@@ -12,7 +12,7 @@ import { Header } from "../assets/constants/Header";
 export default function EditProfile({ navigation }) {
     fontawesome.library.add(faCamera);
 
-    const [image, setImage] = useState('https://i.pinimg.com/originals/d7/0a/3a/d70a3a4ded27c9f46b5e1cce8ccf2d89.jpg');
+    const [image, setImage] = useState('https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png');
     const [student, setStudent] = useState(true);
     const [teacher, setTeacher] = useState(false);
     const [gender, setGender] = useState('');
