@@ -4,6 +4,13 @@ import { theme } from '../../assets/constants/Theme';
 const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+  //animation
+  lottie: {
+    flex: 1,
+    margin: 120,
+    marginRight: 0,
+    marginLeft: 140
+  },
   mainContainer: {
     // alignItems: 'center',
     // justifyContent: 'space-between',
