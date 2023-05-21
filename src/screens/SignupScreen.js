@@ -12,6 +12,18 @@ export default function SignupScreen({ navigation }) {
     fontawesome.library.add(faCamera);
 
     const [image, setImage] = useState(null);
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [registration, setRegistration] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [semester, setSemester] = useState('');
+    const [degree, setDegree] = useState('');
+    const [course, setCourse] = useState('');
+    const [department, setDepartment] = useState('');
+    const [password, setPassword] = useState('');
+
     const [student, setStudent] = useState(false);
     const [teacher, setTeacher] = useState(false);
     const [gender, setGender] = useState('');
@@ -25,15 +37,61 @@ export default function SignupScreen({ navigation }) {
         setTeacher(true)
     }
     const handleMale = () => {
-        setGender('male');
+        setGender('MALE');
     }
     const handleFemale = () => {
-        setGender('female');
+        setGender('FEMALE');
     }
     const semsters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-    const degree = ["degree 1", "degree 2"];
-    const course = ["course 1", "course 2"];
-    const department = ["department 1", "department 2"];
+    const degrees = ["degree 1", "degree 2"];
+    const courses = ["course 1", "course 2"];
+    const departments = ["department 1", "department 2"];
+
+
+    const handleSubmit = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        if (student === true) {
+            var raw = JSON.stringify({
+                "first_name": firstName,
+                "last_name": lastName,
+                "registration_number": registration,
+                "email": email,
+                "phone": phone === '' ? null : phone,
+                "gender": gender,
+                "current_semester": semester,
+                "degree": degree,
+                "user_type": "STUDENT",
+                "password": password
+            });
+        }
+        if (teacher === true) {
+            var raw = JSON.stringify({
+                "first_name": firstName,
+                "last_name": lastName,
+                "email": email,
+                "phone": phone === '' ? null : phone,
+                "gender": gender,
+                "course": course,
+                "department": department,
+                "user_type": "TEACHER",
+                "password": password
+            });
+        }
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://slr.umairabbas.me/createuser", requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
 
     const addImage = () => { };
     return (
@@ -49,7 +107,7 @@ export default function SignupScreen({ navigation }) {
                     </Text>
                 </View>
                 <View style={{ flex: 1, marginHorizontal: 20 }}>
-                    <View style={styles.containerSignup}>
+                    {/* <View style={styles.containerSignup}>
                         {
                             image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
                         }
@@ -60,7 +118,7 @@ export default function SignupScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={{ marginBottom: 20, textAlign: 'center', color: 'white' }}>Upload Profile Picture</Text>
+                    <Text style={{ marginBottom: 20, textAlign: 'center', color: 'white' }}>Upload Profile Picture</Text> */}
                     <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Continue as </Text>
                     <View style={{ flex: 1, flexDirection: 'row', marginBottom: 15, justifyContent: 'space-evenly' }}>
                         <TouchableOpacity
@@ -82,6 +140,8 @@ export default function SignupScreen({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="First Name"
+                                        onChangeText={(text) => setFirstName(text)}
+                                        value={firstName}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -90,6 +150,8 @@ export default function SignupScreen({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="Last Name"
+                                        onChangeText={(text) => setLastName(text)}
+                                        value={lastName}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -98,18 +160,24 @@ export default function SignupScreen({ navigation }) {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Registration Id"
+                                onChangeText={(text) => setRegistration(text)}
+                                value={registration}
                                 placeholderTextColor={'grey'}
                             />
                             <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>Email</Text>
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Email"
+                                onChangeText={(text) => setEmail(text)}
+                                value={email}
                                 placeholderTextColor={'grey'}
                             />
                             <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>Phone Number (optional)</Text>
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Phone Number"
+                                onChangeText={(text) => setPhone(text)}
+                                value={phone}
                                 placeholderTextColor={'grey'}
                                 keyboardType={'phone-pad'}
                             />
@@ -124,7 +192,7 @@ export default function SignupScreen({ navigation }) {
                                 }}
                                 data={semsters}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setSemester(selectedItem);
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem
@@ -142,9 +210,9 @@ export default function SignupScreen({ navigation }) {
                                 defaultButtonText="Select Your Degree"
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
-                                data={degree}
+                                data={degrees}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setDegree(selectedItem)
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem
@@ -171,11 +239,15 @@ export default function SignupScreen({ navigation }) {
                                 style={styles.inputField}
                                 secureTextEntry={true}
                                 placeholder="Enter your Password"
+                                onChangeText={(text) => setPassword(text)}
+                                value={password}
                                 placeholderTextColor={'grey'}
                             />
                             <TouchableOpacity
                                 style={styles.buttonDark}
-                                onPress={() => navigation.navigate('Otp',{ name: 'signup' })}>
+                                onPress={handleSubmit}
+                                // onPress={() => navigation.navigate('Otp', { name: 'signup' })}
+                            >
                                 <Text style={styles.buttonTextDark}>Sign up</Text>
                             </TouchableOpacity>
                             <View style={{ marginBottom: 20 }}>
@@ -194,6 +266,8 @@ export default function SignupScreen({ navigation }) {
                                         <TextInput
                                             style={styles.customInputField}
                                             placeholder="First Name"
+                                            onChangeText={(text) => setFirstName(text)}
+                                            value={firstName}
                                             placeholderTextColor={'grey'}
                                         />
                                     </View>
@@ -202,6 +276,8 @@ export default function SignupScreen({ navigation }) {
                                         <TextInput
                                             style={styles.customInputField}
                                             placeholder="Last Name"
+                                            onChangeText={(text) => setLastName(text)}
+                                            value={lastName}
                                             placeholderTextColor={'grey'}
                                         />
                                     </View>
@@ -210,12 +286,16 @@ export default function SignupScreen({ navigation }) {
                                 <TextInput
                                     style={styles.inputField}
                                     placeholder="Enter your Email"
+                                    onChangeText={(text) => setEmail(text)}
+                                    value={email}
                                     placeholderTextColor={'grey'}
                                 />
                                 <Text style={{ color: 'white', marginBottom: 5, marginLeft: 5 }}>Phone Number (optional)</Text>
                                 <TextInput
                                     style={styles.inputField}
                                     placeholder="Enter your Phone Number"
+                                    onChangeText={(text) => setPhone(text)}
+                                    value={phone}
                                     placeholderTextColor={'grey'}
                                     keyboardType={'phone-pad'}
                                 />
@@ -228,9 +308,9 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Teaching Course"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
-                                    data={course}
+                                    data={courses}
                                     onSelect={(selectedItem, index) => {
-                                        console.log(selectedItem, index)
+                                        setCourse(selectedItem)
                                     }}
                                     buttonTextAfterSelection={(selectedItem, index) => {
                                         return selectedItem
@@ -248,9 +328,9 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Teaching Department"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
-                                    data={department}
+                                    data={departments}
                                     onSelect={(selectedItem, index) => {
-                                        console.log(selectedItem, index)
+                                        setDepartment(selectedItem)
                                     }}
                                     buttonTextAfterSelection={(selectedItem, index) => {
                                         return selectedItem
@@ -277,11 +357,15 @@ export default function SignupScreen({ navigation }) {
                                     style={styles.inputField}
                                     secureTextEntry={true}
                                     placeholder="Enter your Password"
+                                    onChangeText={(text) => setPassword(text)}
+                                    value={password}
                                     placeholderTextColor={'grey'}
                                 />
                                 <TouchableOpacity
                                     style={styles.buttonDark}
-                                    onPress={() => navigation.navigate('Otp',{name: 'signup'})}>
+                                    onPress={handleSubmit}
+                                    // onPress={() => navigation.navigate('Otp', { name: 'signup' })}
+                                >
                                     <Text style={styles.buttonTextDark}>Sign up</Text>
                                 </TouchableOpacity>
                                 <View style={{marginBottom: 20}}>

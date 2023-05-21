@@ -14,6 +14,7 @@ import SecurityPrivacy from './src/screens/Security&Privacy';
 import EditProfile from './src/screens/EditProfile';
 import Message from './src/screens/Message';
 import NotificationScreen from './src/screens/NotificationScreen';
+import RegisterSuccess from './src/screens/RegisterSuccess';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ const App = () => {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="RegisterSuccess" component={RegisterSuccess} />
         <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
