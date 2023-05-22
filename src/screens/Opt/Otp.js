@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView, ToastAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../assets/style/styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -37,6 +37,7 @@ export default function Otp({ navigation, route }) {
         if (OTP.length < 6) {
             showErrorToast('Otp is Incomplete');
         } else {
+            setLoader(true);
             fetch("https://slr.umairabbas.me/verifyotp", requestOptions)
                 .then(response => response.json())
                 .then(async (response) => {
@@ -46,7 +47,11 @@ export default function Otp({ navigation, route }) {
                     } else {
                         setLoader(false);
                         setOTP('');
-                        navigation.navigate('RegisterSuccess');
+                        if (name === 'reset') {
+                            navigation.navigate('NewPassword');
+                        } else {
+                            navigation.navigate('RegisterSuccess');
+                        }
                     }
                 })
                 .catch(error => console.log('error', error));
@@ -112,7 +117,7 @@ export default function Otp({ navigation, route }) {
                     {name === 'reset' ? (
                         <TouchableOpacity
                             style={styles.buttonDark}
-                            onPress={() => navigation.navigate('NewPassword')}>
+                            onPress={handleSubmit}>
                             <Text style={styles.buttonTextDark}>Verify Otp</Text>
                         </TouchableOpacity>
                     ) : (
