@@ -46,7 +46,6 @@ export default function ResetPassword({ navigation }) {
                     } else {
                         setLoader(false);
                         setEmail('');
-                        console.log(response.token);
                         await AsyncStorage.setItem('token', response.token);
                         navigation.navigate('Otp', { name: 'reset' });
                     }
