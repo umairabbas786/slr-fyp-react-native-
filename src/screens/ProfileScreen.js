@@ -3,6 +3,7 @@ import React from "react";
 import CircularProgressBase from 'react-native-circular-progress-indicator';
 import styles from "../assets/style/styles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useSelector } from "react-redux";
 
 const CircleButton = ({ tag, bold, icon, onPress }) => {
   return (
@@ -24,6 +25,9 @@ const CircleButton = ({ tag, bold, icon, onPress }) => {
 };
 
 const ProfileScreen = ({ navigation }) => {
+
+  const userData = useSelector((state) => state.userDetails.user);
+
   return (
     <ScrollView
       contentContainerStyle={styles.profileMainContainerStyle}
@@ -48,8 +52,8 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.profileTag}>Student</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.profileName}>User Name</Text>
-      <Text style={styles.completedTag}>Email Address</Text>
+      <Text style={styles.profileName}>{userData.first_name + ' ' + userData.last_name }</Text>
+      <Text style={styles.completedTag}>{userData.email}</Text>
       <View style={styles.rowButtonContainer}>
         <CircleButton
           tag="Log out"

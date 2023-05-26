@@ -3,8 +3,12 @@ import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView, Toas
 import styles from '../assets/style/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AnimatedLoader from 'react-native-animated-loader';
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/actions/userProfile";
 
 export default function LoginScreen({ navigation }) {
+
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,6 +58,8 @@ export default function LoginScreen({ navigation }) {
             setEmail('');
             setPassword('');
             await AsyncStorage.setItem('token', response.authtoken);
+            dispatch(setUser(response.response));
+            console.log(response.response);
             navigation.navigate('Main');
           }
         })
