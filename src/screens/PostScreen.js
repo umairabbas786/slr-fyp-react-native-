@@ -10,17 +10,21 @@ import {
   ScrollView,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux';
 
 const {height} = Dimensions.get('window');
 
 const PostScreen = () => {
+
+  const userData = useSelector((state) => state.userDetails.user);
+
   const position = useRef(new Animated.Value(2.5)).current;
   const [text, setText] = useState('');
-  const [mode, setMode] = useState('Umair Abbas');
+  const [mode, setMode] = useState('Open');
 
   const moveIt = () => {
     if (mode === 'Anonymous') {
-      setMode('Umair Abbas');
+      setMode('Open');
       Animated.timing(position, {
         toValue: 2.5,
         duration: 1000,
@@ -170,7 +174,7 @@ const PostScreen = () => {
               position: 'absolute',
               right: 0,
             }}>
-            Umair Abbas
+            {userData.first_name + ' ' + userData.last_name}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
