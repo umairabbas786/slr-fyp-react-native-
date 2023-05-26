@@ -4,6 +4,7 @@ import CircularProgressBase from 'react-native-circular-progress-indicator';
 import styles from "../assets/style/styles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CircleButton = ({ tag, bold, icon, onPress }) => {
   return (
@@ -49,7 +50,7 @@ const ProfileScreen = ({ navigation }) => {
           source={require('../assets/images/img1.png')}
         />
         <TouchableOpacity activeOpacity={0.7} style={styles.profileButton}>
-          <Text style={styles.profileTag}>Student</Text>
+          <Text style={styles.profileTag}>{userData.user_type}</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.profileName}>{userData.first_name + ' ' + userData.last_name }</Text>
@@ -58,7 +59,11 @@ const ProfileScreen = ({ navigation }) => {
         <CircleButton
           tag="Log out"
           icon="sign-out"
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => {
+            AsyncStorage.removeItem('token');
+            navigation.navigate('Login');
+          }
+          }
         />
         <CircleButton
           bold

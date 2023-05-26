@@ -7,26 +7,39 @@ import { faCamera } from '@fortawesome/fontawesome-free-solid';
 import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Header } from "../assets/constants/Header";
+import { useSelector } from "react-redux";
 
 
 export default function EditProfile({ navigation }) {
+
+    const userData = useSelector((state) => state.userDetails.user);
+
     fontawesome.library.add(faCamera);
 
     const [image, setImage] = useState('https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png');
-    const [student, setStudent] = useState(true);
-    const [teacher, setTeacher] = useState(false);
-    const [gender, setGender] = useState('');
+    const [userType, setUserType] = useState(userData.user_type);
+    const [gender, setGender] = useState(userData.gender);
+
+    const [firstName, setFirstName] = useState(userData.first_name);
+    const [lastName, setLastName] = useState(userData.last_name);
+    const [registration, setRegistration] = useState(userData.registration_number);
+    const [email, setEmail] = useState(userData.email);
+    const [phone, setPhone] = useState(userData.phone);
+    const [semester, setSemester] = useState(userData.current_semester);
+    const [degree, setDegree] = useState(userData.degree);
+    const [course, setCourse] = useState(userData.teaching_course);
+    const [department, setDepartment] = useState(userData.teaching_department);
 
     const handleMale = () => {
-        setGender('male');
+        setGender('MALE');
     }
     const handleFemale = () => {
-        setGender('female');
+        setGender('FEMALE');
     }
     const semsters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-    const degree = ["degree 1", "degree 2"];
-    const course = ["course 1", "course 2"];
-    const department = ["department 1", "department 2"];
+    const degrees = ["degree 1", "degree 2"];
+    const courses = ["course 1", "course 2"];
+    const departments = ["department 1", "department 2"];
 
     const addImage = () => { };
     return (
@@ -47,7 +60,7 @@ export default function EditProfile({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {teacher === false && student === false ? '' : student ? (
+                    {userType === 'TEACHER' ? '' : userType ? (
                         <View>
                             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
                                 <View style={{ flex: 1, flexDirection: 'column' }}>
@@ -55,6 +68,9 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="First Name"
+                                        onChangeText={(text) => setFirstName(text)}
+                                        value={firstName}
+                                        editable={false}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -63,6 +79,9 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="Last Name"
+                                        onChangeText={(text) => setLastName(text)}
+                                        value={lastName}
+                                        editable={false}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -71,32 +90,40 @@ export default function EditProfile({ navigation }) {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Registration Id"
+                                onChangeText={(text) => setRegistration(text)}
+                                value={registration}
+                                editable={false}
                                 placeholderTextColor={'grey'}
                             />
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Email</Text>
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Email"
+                                onChangeText={(text) => setEmail(text)}
+                                value={email}
+                                editable={false}
                                 placeholderTextColor={'grey'}
                             />
-                            <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Phone Number (optional)</Text>
+                            <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Phone Number</Text>
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Phone Number"
+                                onChangeText={(text) => setPhone(text)}
+                                value={phone}
                                 placeholderTextColor={'grey'}
                                 keyboardType={'phone-pad'}
                             />
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                    style={gender === 'male' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
-                                    onPress={handleMale}>
-                                    <Text style={gender === 'male' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
+                                    style={gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                >
+                                    <Text style={gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    style={gender === 'female' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
-                                    onPress={handleFemale}>
-                                    <Text style={gender === 'female' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
+                                    style={gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                >
+                                    <Text style={gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
                             </View>
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Current Semester</Text>
@@ -105,12 +132,16 @@ export default function EditProfile({ navigation }) {
                                 defaultButtonText="Select Your Semester"
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
+                                dropdownStyle={styles.dropdownStyle}
+                                defaultValue={semester}
+                                selectedRowStyle={styles.selectedField}
+                                selectedRowTextStyle={styles.selectedFieldText}
                                 renderDropdownIcon={isOpened => {
                                     return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#000'} size={16} />;
                                 }}
                                 data={semsters}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setSemester(selectedItem);
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem
@@ -129,9 +160,13 @@ export default function EditProfile({ navigation }) {
                                 defaultButtonText="Select Your Degree"
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
-                                data={degree}
+                                data={degrees}
+                                defaultValue={degree}
+                                dropdownStyle={styles.dropdownStyle}
+                                selectedRowStyle={styles.selectedField}
+                                selectedRowTextStyle={styles.selectedFieldText}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setDegree(selectedItem);
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem
@@ -183,14 +218,14 @@ export default function EditProfile({ navigation }) {
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                        style={gender === 'male' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                    style={gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleMale}>
-                                    <Text style={gender === 'male' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
+                                    <Text style={gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                        style={gender === 'female' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                    style={gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                     onPress={handleFemale}>
-                                    <Text style={gender === 'female' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
+                                    <Text style={gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
                             </View>
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Teaching Course</Text>
@@ -202,9 +237,13 @@ export default function EditProfile({ navigation }) {
                                 defaultButtonText="Select Your Teaching Course"
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
-                                data={course}
+                                data={courses}
+                                    defaultValue={course}
+                                    dropdownStyle={styles.dropdownStyle}
+                                selectedRowStyle={styles.selectedField}
+                                selectedRowTextStyle={styles.selectedFieldText}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setCourse(selectedItem);
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem
@@ -222,9 +261,13 @@ export default function EditProfile({ navigation }) {
                                 defaultButtonText="Select Your Teaching Department"
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
-                                data={department}
+                                data={departments}
+                                    defaultValue={department}
+                                    dropdownStyle={styles.dropdownStyle}
+                                selectedRowStyle={styles.selectedField}
+                                selectedRowTextStyle={styles.selectedFieldText}
                                 onSelect={(selectedItem, index) => {
-                                    console.log(selectedItem, index)
+                                    setDepartment(selectedItem);
                                 }}
                                 buttonTextAfterSelection={(selectedItem, index) => {
                                     return selectedItem

@@ -268,6 +268,10 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Semester"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
+                                    defaultValue={semester}
+                                    dropdownStyle={styles.dropdownStyle}
+                                    selectedRowStyle={styles.selectedField}
+                                    selectedRowTextStyle={styles.selectedFieldText}
                                     renderDropdownIcon={isOpened => {
                                         return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#000'} size={16} />;
                                     }}
@@ -291,6 +295,10 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Degree"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
+                                    defaultValue={degree}
+                                    dropdownStyle={styles.dropdownStyle}
+                                    selectedRowStyle={styles.selectedField}
+                                    selectedRowTextStyle={styles.selectedFieldText}
                                     data={degrees}
                                     onSelect={(selectedItem, index) => {
                                         setDegree(selectedItem)
@@ -389,6 +397,10 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Teaching Course"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
+                                    defaultValue={course}
+                                    dropdownStyle={styles.dropdownStyle}
+                                    selectedRowStyle={styles.selectedField}
+                                    selectedRowTextStyle={styles.selectedFieldText}
                                     data={courses}
                                     onSelect={(selectedItem, index) => {
                                         setCourse(selectedItem)
@@ -409,6 +421,10 @@ export default function SignupScreen({ navigation }) {
                                     defaultButtonText="Select Your Teaching Department"
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
+                                    defaultValue={department}
+                                    dropdownStyle={styles.dropdownStyle}
+                                    selectedRowStyle={styles.selectedField}
+                                    selectedRowTextStyle={styles.selectedFieldText}
                                     data={departments}
                                     onSelect={(selectedItem, index) => {
                                         setDepartment(selectedItem)

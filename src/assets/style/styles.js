@@ -21,6 +21,15 @@ const styles = StyleSheet.create({
     color: theme.colors.BTN,
     fontSize: theme.colors.fontSize,
   },
+  selectedField: {
+    backgroundColor: theme.colors.BG,
+  },
+  selectedFieldText: {
+    color: '#fff'
+  },
+  dropdownStyle: {
+    borderRadius: 15,
+  },
   inputField: {
     backgroundColor: 'white',
     borderRadius: 15,

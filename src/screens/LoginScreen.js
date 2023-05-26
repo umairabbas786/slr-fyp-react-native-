@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView, ToastAndroid } from 'react-native';
 import styles from '../assets/style/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,6 +9,12 @@ import { setUser } from "../redux/actions/userProfile";
 export default function LoginScreen({ navigation }) {
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (AsyncStorage.getItem('token')){
+      navigation.navigate('Main');
+    }
+  }, []);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,7 +65,6 @@ export default function LoginScreen({ navigation }) {
             setPassword('');
             await AsyncStorage.setItem('token', response.authtoken);
             dispatch(setUser(response.response));
-            console.log(response.response);
             navigation.navigate('Main');
           }
         })
