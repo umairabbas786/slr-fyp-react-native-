@@ -68,8 +68,7 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="First Name"
-                                        onChangeText={(text) => setFirstName(text)}
-                                        value={firstName}
+                                        value={userData.first_name}
                                         editable={false}
                                         placeholderTextColor={'grey'}
                                     />
@@ -79,8 +78,7 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="Last Name"
-                                        onChangeText={(text) => setLastName(text)}
-                                        value={lastName}
+                                        value={userData.last_name}
                                         editable={false}
                                         placeholderTextColor={'grey'}
                                     />
@@ -90,8 +88,7 @@ export default function EditProfile({ navigation }) {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Registration Id"
-                                onChangeText={(text) => setRegistration(text)}
-                                value={registration}
+                                value={userData.registration_number}
                                 editable={false}
                                 placeholderTextColor={'grey'}
                             />
@@ -99,8 +96,7 @@ export default function EditProfile({ navigation }) {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Email"
-                                onChangeText={(text) => setEmail(text)}
-                                value={email}
+                                value={userData.email}
                                 editable={false}
                                 placeholderTextColor={'grey'}
                             />
@@ -116,14 +112,14 @@ export default function EditProfile({ navigation }) {
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                    style={gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                    style={userData.gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                 >
-                                    <Text style={gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
+                                    <Text style={userData.gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    style={gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                    style={userData.gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
                                 >
-                                    <Text style={gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
+                                    <Text style={userData.gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
                             </View>
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Current Semester</Text>
@@ -152,28 +148,12 @@ export default function EditProfile({ navigation }) {
                             />
 
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Degree</Text>
-                            <SelectDropdown
-                                buttonStyle={styles.inputField}
-                                renderDropdownIcon={isOpened => {
-                                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#000'} size={16} />;
-                                }}
-                                defaultButtonText="Select Your Degree"
-                                buttonTextStyle={styles.buttonTextLight}
-                                dropdownIconPosition="right"
-                                data={degrees}
-                                defaultValue={degree}
-                                dropdownStyle={styles.dropdownStyle}
-                                selectedRowStyle={styles.selectedField}
-                                selectedRowTextStyle={styles.selectedFieldText}
-                                onSelect={(selectedItem, index) => {
-                                    setDegree(selectedItem);
-                                }}
-                                buttonTextAfterSelection={(selectedItem, index) => {
-                                    return selectedItem
-                                }}
-                                rowTextForSelection={(item, index) => {
-                                    return item
-                                }}
+                            <TextInput
+                                style={styles.inputField}
+                                placeholder="Degree"
+                                value={userData.degree}
+                                editable={false}
+                                placeholderTextColor={'grey'}
                             />
                             <TouchableOpacity
                                 style={styles.buttonProfileDark}
@@ -190,6 +170,8 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="First Name"
+                                        value={userData.first_name}
+                                        editable={false}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -198,6 +180,8 @@ export default function EditProfile({ navigation }) {
                                     <TextInput
                                         style={styles.customInputField}
                                         placeholder="Last Name"
+                                        value={userData.last_name}
+                                        editable={false}
                                         placeholderTextColor={'grey'}
                                     />
                                 </View>
@@ -206,6 +190,8 @@ export default function EditProfile({ navigation }) {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="Enter your Email"
+                                value={userData.email}
+                                editable={false}
                                 placeholderTextColor={'grey'}
                             />
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Phone Number (optional)</Text>
@@ -218,14 +204,14 @@ export default function EditProfile({ navigation }) {
                             <Text style={{ color: 'black', marginBottom: -5, marginLeft: 5 }}>Gender</Text>
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity
-                                    style={gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
-                                    onPress={handleMale}>
-                                    <Text style={gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
+                                    style={userData.gender === 'MALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                >
+                                    <Text style={userData.gender === 'MALE' ? styles.buttonTextDark : styles.buttonTextLight}>Male</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    style={gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
-                                    onPress={handleFemale}>
-                                    <Text style={gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
+                                    style={userData.gender === 'FEMALE' ? styles.buttonDarkProfileSignup : styles.buttonLightSignup}
+                                >
+                                    <Text style={userData.gender === 'FEMALE' ? styles.buttonTextDark : styles.buttonTextLight}>Female</Text>
                                 </TouchableOpacity>
                             </View>
                             <Text style={{ color: 'black', marginBottom: 5, marginLeft: 5 }}>Teaching Course</Text>
@@ -238,8 +224,8 @@ export default function EditProfile({ navigation }) {
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
                                 data={courses}
-                                    defaultValue={course}
-                                    dropdownStyle={styles.dropdownStyle}
+                                defaultValue={course}
+                                dropdownStyle={styles.dropdownStyle}
                                 selectedRowStyle={styles.selectedField}
                                 selectedRowTextStyle={styles.selectedFieldText}
                                 onSelect={(selectedItem, index) => {
@@ -262,8 +248,8 @@ export default function EditProfile({ navigation }) {
                                 buttonTextStyle={styles.buttonTextLight}
                                 dropdownIconPosition="right"
                                 data={departments}
-                                    defaultValue={department}
-                                    dropdownStyle={styles.dropdownStyle}
+                                defaultValue={department}
+                                dropdownStyle={styles.dropdownStyle}
                                 selectedRowStyle={styles.selectedField}
                                 selectedRowTextStyle={styles.selectedFieldText}
                                 onSelect={(selectedItem, index) => {
