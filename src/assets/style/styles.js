@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   },
   profileMainContainerStyle: {
     paddingBottom: 100,
-    paddingTop: 100,
+    paddingTop: 0,
   },
   profileWrapper: {
     alignItems: 'center',
@@ -258,6 +258,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: '10%',
     marginTop: 25,
   },
+  rowDetailsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: '10%',
+    marginHorizontal: 15,
+    marginTop: 25,
+  },
   texted: {
     fontSize: 17,
     width: '90%',
@@ -274,6 +282,18 @@ const styles = StyleSheet.create({
     paddingLeft: '5%',
     marginBottom: 10,
     paddingTop: 15
+  },
+  customHeadingForProfile: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    paddingLeft: '5%',
+    padding: 5,
+    backgroundColor: theme.colors.BG,
+    borderRadius: 20,
+    marginTop: 50,
+    textAlign: 'center',
+
   },
   matchedWrapper: {
     paddingVertical: 15,

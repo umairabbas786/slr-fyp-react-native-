@@ -6,6 +6,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const Heading = ({ children }) => {
+  return <Text style={styles.customHeadingForProfile}>{children}</Text>;
+};
+
 const CircleButton = ({ tag, bold, icon, onPress }) => {
   return (
     <View
@@ -55,6 +59,20 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <Text style={styles.profileName}>{userData.first_name + ' ' + userData.last_name }</Text>
       <Text style={styles.completedTag}>{userData.email}</Text>
+      <View style={styles.rowDetailsContainer}>
+        <View>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold' }}>0</Text>
+          <Text style={{ color: 'grey', textAlign: 'center' }}>Posts</Text>
+        </View>
+        <View>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold' }}>0</Text>
+          <Text style={{ color: 'grey', textAlign: 'center' }}>Likes</Text>
+        </View>
+        <View>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold' }}>0</Text>
+          <Text style={{ color: 'grey', textAlign: 'center' }}>Connects</Text>
+        </View>
+      </View>
       <View style={styles.rowButtonContainer}>
         <CircleButton
           tag="Log out"
@@ -80,6 +98,79 @@ const ProfileScreen = ({ navigation }) => {
             navigation.navigate('Settings');
           }}
         />
+      </View>
+      <View style={{marginHorizontal: 20}}>
+        <Heading>Your Posts</Heading>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
+          <Text style={{
+            'color': '#000',
+            'fontWeight': '800',
+          }}>What is difference between Programmer and Software Engineer?</Text>
+          <View style={styles.cardInner}>
+            <Image
+              source={require('../assets/images/img1.png')}
+              style={styles.cardInnerImage}
+            />
+            <Text style={styles.cardTitle}>Umair Abbas {'\n'}
+              <Text style={{ 'color': 'grey' }}>20 mins ago</Text>
+            </Text>
+          </View>
+          <View style={styles.likeContainer}>
+            <FontAwesome
+              name="heart"
+              color="red"
+              size={20}
+              onPress={() => {
+                setLiked(true)
+              }}
+            />
+            <Text style={{
+              'color': 'grey',
+              'fontWeight': '400',
+              'fontSize': 16
+            }}>No Answer yet</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardHome}
+          onPress={() => {
+            navigation.navigate('Message');
+          }}
+        >
+          <Text style={{
+            'color': '#000',
+            'fontWeight': '800',
+          }}>What is difference between Programmer and Software Engineer?</Text>
+          <View style={styles.cardInner}>
+            <Image
+              source={require('../assets/images/img1.png')}
+              style={styles.cardInnerImage}
+            />
+            <Text style={styles.cardTitle}>Umair Abbas {'\n'}
+              <Text style={{ 'color': 'grey' }}>20 mins ago</Text>
+            </Text>
+          </View>
+          <View style={styles.likeContainer}>
+            <FontAwesome
+              name="heart"
+              color="red"
+              size={20}
+              onPress={() => {
+                setLiked(true)
+              }}
+            />
+            <Text style={{
+              'color': 'grey',
+              'fontWeight': '400',
+              'fontSize': 16
+            }}>No Answer yet</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
