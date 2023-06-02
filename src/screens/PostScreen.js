@@ -11,14 +11,17 @@ import {
   ToastAndroid,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AnimatedLoader from 'react-native-animated-loader';
 import styles from '../assets/style/styles';
 import { Root, Popup } from 'react-native-popup-confirm-toast';
+import { setPost } from '../redux/actions/userPosts';
 
 const { height } = Dimensions.get('window');
 
 const PostScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.userDetails.user);
 
@@ -62,6 +65,7 @@ const PostScreen = ({ navigation }) => {
             showErrorToast(response.error);
           } else {
             setLoader(false);
+            dispatch(setPost(response.posts));
             setText('');
             Popup.show({
               type: 'success',
@@ -203,19 +207,34 @@ const PostScreen = ({ navigation }) => {
                     },
                   ],
                 }}>
-                <Image
-                  style={{
-                    height: '100%',
-                    width: '100%',
-                    resizeMode: 'cover',
-                  }}
-                  source={{
-                    uri:
-                      mode === 'Anonymous'
-                        ? 'https://img.freepik.com/free-vector/flower-background-desktop-wallpaper-cute-vector_53876-136877.jpg'
-                        : 'https://w.forfun.com/fetch/05/05eeb93a2e41734ecb6044146351f11e.jpeg',
-                  }}
-                />
+                {userData.profile_picture === null ? 
+                  <Image
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      resizeMode: 'cover',
+                    }}
+                    source={{
+                      uri:
+                        mode === 'Anonymous'
+                          ? 'https://png.pngtree.com/png-vector/20220704/ourmid/pngtree-anonymous-vector-isolated-icon-png-image_5594778.png'
+                          : 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                    }}
+                  /> : 
+                  <Image
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      resizeMode: 'cover',
+                    }}
+                    source={{
+                      uri:
+                        mode === 'Anonymous'
+                          ? 'https://img.freepik.com/free-vector/flower-background-desktop-wallpaper-cute-vector_53876-136877.jpg'
+                          : 'https://w.forfun.com/fetch/05/05eeb93a2e41734ecb6044146351f11e.jpeg',
+                    }}
+                  />
+                }
               </Animated.View>
               <Text
                 numberOfLines={1}

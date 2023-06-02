@@ -27,6 +27,7 @@
     "react-native-emoji-selector": "^0.2.0",
     "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "^2.9.0",
+    "react-native-image-crop-picker": "^0.40.0",
     "react-native-image-picker": "^5.4.0",
     "react-native-picker-select": "^8.0.4",
     "react-native-popup-confirm-toast": "^2.3.2",
@@ -39,6 +40,7 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
+    "showtimeago": "^3.3.13",
     "sync-storage": "^0.4.2",
     "validator": "^13.9.0"
   },

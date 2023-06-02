@@ -5,6 +5,7 @@ import styles from "../assets/style/styles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import showTimeAgo from "showtimeago";
 
 const Heading = ({ children }) => {
   return <Text style={styles.customHeadingForProfile}>{children}</Text>;
@@ -32,6 +33,8 @@ const CircleButton = ({ tag, bold, icon, onPress }) => {
 const ProfileScreen = ({ navigation }) => {
 
   const userData = useSelector((state) => state.userDetails.user);
+  const userPosts = useSelector((state) => state.userPosts.post);
+  console.log(userPosts.length);
 
   return (
     <ScrollView
@@ -49,10 +52,15 @@ const ProfileScreen = ({ navigation }) => {
           inActiveStrokeColor={'#D2D2D2'}
           rotation={180}
         />
-        <Image
-          style={styles.profile}
-          source={require('../assets/images/img1.png')}
-        />
+        {userData.profile_picture === null ?
+          <Image
+            source={require('../assets/images/img1.png')}
+            style={styles.profile}
+          />
+          : <Image
+            source={require('../assets/images/img1.png')}
+            style={styles.profile}
+          />}
         <TouchableOpacity activeOpacity={0.7} style={styles.profileButton}>
           <Text style={styles.profileTag}>{userData.user_type}</Text>
         </TouchableOpacity>
@@ -61,7 +69,7 @@ const ProfileScreen = ({ navigation }) => {
       <Text style={styles.completedTag}>{userData.email}</Text>
       <View style={styles.rowDetailsContainer}>
         <View>
-          <Text style={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold' }}>0</Text>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold' }}>{userPosts.length}</Text>
           <Text style={{ color: 'grey', textAlign: 'center' }}>Posts</Text>
         </View>
         <View>
@@ -103,79 +111,51 @@ const ProfileScreen = ({ navigation }) => {
           }}
         />
       </View>
-      <View style={{ marginHorizontal: 20 }}>
-        <Heading>Your Posts</Heading>
-        <TouchableOpacity
-          style={styles.cardHome}
-          onPress={() => {
-            navigation.navigate('Message');
-          }}
-        >
-          <Text style={{
-            'color': '#000',
-            'fontWeight': '800',
-          }}>What is difference between Programmer and Software Engineer?</Text>
-          <View style={styles.cardInner}>
-            <Image
-              source={require('../assets/images/img1.png')}
-              style={styles.cardInnerImage}
-            />
-            <Text style={styles.cardTitle}>Umair Abbas {'\n'}
-              <Text style={{ 'color': 'grey' }}>20 mins ago</Text>
-            </Text>
-          </View>
-          <View style={styles.likeContainer}>
-            <FontAwesome
-              name="heart"
-              color="red"
-              size={20}
-              onPress={() => {
-                setLiked(true)
-              }}
-            />
+      {userPosts.length > 0 ? userPosts.map((posts, index) => (
+        <View style={{ marginHorizontal: 20 }}>
+          <Heading>Your Posts</Heading>
+          <TouchableOpacity
+            style={styles.cardHome}
+            onPress={() => {
+              navigation.navigate('Message');
+            }}
+          >
             <Text style={{
-              'color': 'grey',
-              'fontWeight': '400',
-              'fontSize': 16
-            }}>No Answer yet</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardHome}
-          onPress={() => {
-            navigation.navigate('Message');
-          }}
-        >
-          <Text style={{
-            'color': '#000',
-            'fontWeight': '800',
-          }}>What is difference between Programmer and Software Engineer?</Text>
-          <View style={styles.cardInner}>
-            <Image
-              source={require('../assets/images/img1.png')}
-              style={styles.cardInnerImage}
-            />
-            <Text style={styles.cardTitle}>Umair Abbas {'\n'}
-              <Text style={{ 'color': 'grey' }}>20 mins ago</Text>
-            </Text>
-          </View>
-          <View style={styles.likeContainer}>
-            <FontAwesome
-              name="heart"
-              color="red"
-              size={20}
-              onPress={() => {
-                setLiked(true)
-              }}
-            />
-            <Text style={{
-              'color': 'grey',
-              'fontWeight': '400',
-              'fontSize': 16
-            }}>No Answer yet</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+              'color': '#000',
+              'fontWeight': '800',
+            }}>{posts.message}</Text>
+            <View style={styles.cardInner}>
+              {userData.profile_picture === null ?
+                <Image
+                  source={require('../assets/images/img1.png')}
+                  style={styles.cardInnerImage}
+                />
+                : <Image
+                  source={require('../assets/images/img1.png')}
+                  style={styles.cardInnerImage}
+                />}
+              <Text style={styles.cardTitle}>{userData.first_name + ' ' + userData.last_name} {'\n'}
+                <Text style={{ 'color': 'grey' }}>{showTimeAgo(posts.createdAt)}</Text>
+              </Text>
+            </View>
+            <View style={styles.likeContainer}>
+              <FontAwesome
+                name="heart"
+                color="red"
+                size={20}
+                onPress={() => {
+                  setLiked(true)
+                }}
+              />
+              <Text style={{
+                'color': 'grey',
+                'fontWeight': '400',
+                'fontSize': 16
+              }}>No Answer yet</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )) : ''}
     </ScrollView>
   );
 };

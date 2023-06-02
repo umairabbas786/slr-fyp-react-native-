@@ -8,7 +8,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Header } from "../assets/constants/Header";
 import { useSelector } from "react-redux";
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 
 
 export default function EditProfile({ navigation }) {
@@ -17,7 +17,7 @@ export default function EditProfile({ navigation }) {
 
     fontawesome.library.add(faCamera);
 
-    const [image, setImage] = useState('https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png');
+    const [image, setImage] = useState('https://cdn-icons-png.flaticon.com/512/3135/3135715.png');
 
     const [phone, setPhone] = useState(userData.phone);
     const [semester, setSemester] = useState(userData.current_semester);
@@ -28,63 +28,16 @@ export default function EditProfile({ navigation }) {
     const courses = ["course 1", "course 2"];
     const departments = ["department 1", "department 2"];
 
-    const requestExternalWritePermission = async () => {
-        if (Platform.OS === 'android') {
-            try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-                    {
-                        title: 'External Storage Write Permission',
-                        message: 'App needs write permission',
-                    },
-                );
-                // If WRITE_EXTERNAL_STORAGE Permission is granted
-                return granted === PermissionsAndroid.RESULTS.GRANTED;
-            } catch (err) {
-                console.log(err);
-                console.log('Write permission err', err);
-            }
-            return false;
-        } else return true;
-    };
-
-    const addImage = async () => {
-
-        let options = {
-            mediaType: 'photo',
-            maxWidth: 200,
-            maxHeight: 200,
-            allowsEditing: true,
-            aspect: [4, 3],
-        }
-
-        let isStoragePermitted = await requestExternalWritePermission();
-
-        let _image = launchImageLibrary(options, (response) => {
-            console.log('Response = ', response);
-
-            if (response.didCancel) {
-                console.log('User cancelled camera picker');
-                return;
-            } else if (response.errorCode == 'camera_unavailable') {
-                console.log('Camera not available on device');
-                return;
-            } else if (response.errorCode == 'permission') {
-                console.log('Permission not satisfied');
-                return;
-            } else if (response.errorCode == 'others') {
-                console.log(response.errorMessage);
-                return;
-            }
-            console.log('base64 -> ', response.base64);
-            console.log('uri -> ', response.uri);
-            console.log('width -> ', response.width);
-            console.log('height -> ', response.height);
-            console.log('fileSize -> ', response.fileSize);
-            console.log('type -> ', response.type);
-            console.log('fileName -> ', response.fileName);
+    const addImage = () => {
+        ImagePicker.openPicker({
+            width: 125,
+            height: 125,
+            cropping: true,
+            cropperCircleOverlay: true,
+        }).then(image => {
+            console.log(image);
+            setImage(image.path)
         });
-
     };
     return (
         <View style={styles.ProfileMainContainer}>
@@ -95,7 +48,7 @@ export default function EditProfile({ navigation }) {
                 <View style={{ flex: 1, marginHorizontal: 20 }}>
                     <View style={styles.containerSignup}>
                         {
-                            image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+                            image && <Image source={{ uri: image }} style={{ width: 125, height: 125 }} />
                         }
                         <View style={styles.uploadBtnContainerSignup}>
                             <TouchableOpacity onPress={addImage} style={styles.uploadBtnSignup} >
