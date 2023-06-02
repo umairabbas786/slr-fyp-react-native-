@@ -107,6 +107,15 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '48%',
   },
+  buttonChangeProfilePicture: {
+    marginTop: 10,
+    backgroundColor: theme.colors.BG,
+    height: 40,
+    borderRadius: 15,
+    alignItems: 'center',
+    padding: 10,
+    width: '50%',
+  },
   buttonLightSignup: {
     marginTop: 10,
     backgroundColor: 'white',
