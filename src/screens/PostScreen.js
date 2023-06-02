@@ -195,7 +195,7 @@ const PostScreen = ({ navigation }) => {
               }}>
               <Animated.View
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: 'black',
                   position: 'absolute',
                   height: 35,
                   width: 35,
@@ -231,7 +231,7 @@ const PostScreen = ({ navigation }) => {
                       uri:
                         mode === 'Anonymous'
                           ? 'https://img.freepik.com/free-vector/flower-background-desktop-wallpaper-cute-vector_53876-136877.jpg'
-                          : 'https://w.forfun.com/fetch/05/05eeb93a2e41734ecb6044146351f11e.jpeg',
+                          : userData.profile_picture,
                     }}
                   />
                 }

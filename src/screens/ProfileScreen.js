@@ -34,7 +34,6 @@ const ProfileScreen = ({ navigation }) => {
 
   const userData = useSelector((state) => state.userDetails.user);
   const userPosts = useSelector((state) => state.userPosts.post);
-  console.log(userPosts.length);
 
   return (
     <ScrollView
@@ -58,7 +57,7 @@ const ProfileScreen = ({ navigation }) => {
             style={styles.profile}
           />
           : <Image
-            source={require('../assets/images/img1.png')}
+            source={{ uri: userData.profile_picture }}
             style={styles.profile}
           />}
         <TouchableOpacity activeOpacity={0.7} style={styles.profileButton}>
@@ -131,7 +130,7 @@ const ProfileScreen = ({ navigation }) => {
                   style={styles.cardInnerImage}
                 />
                 : <Image
-                  source={require('../assets/images/img1.png')}
+                  source={{ uri: userData.profile_picture }}
                   style={styles.cardInnerImage}
                 />}
               <Text style={styles.cardTitle}>{userData.first_name + ' ' + userData.last_name} {'\n'}
