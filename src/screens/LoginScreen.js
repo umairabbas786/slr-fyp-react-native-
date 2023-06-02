@@ -11,9 +11,12 @@ export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (AsyncStorage.getItem('token')){
-      navigation.navigate('Main');
+    const checkLoginState = async () => {
+      if (await AsyncStorage.getItem('token') !== null) {
+        navigation.navigate('Main');
+      }
     }
+    checkLoginState();
   }, []);
 
   const [email, setEmail] = useState('');

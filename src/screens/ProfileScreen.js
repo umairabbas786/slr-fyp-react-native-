@@ -57,7 +57,7 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.profileTag}>{userData.user_type}</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.profileName}>{userData.first_name + ' ' + userData.last_name }</Text>
+      <Text style={styles.profileName}>{userData.first_name + ' ' + userData.last_name}</Text>
       <Text style={styles.completedTag}>{userData.email}</Text>
       <View style={styles.rowDetailsContainer}>
         <View>
@@ -77,11 +77,15 @@ const ProfileScreen = ({ navigation }) => {
         <CircleButton
           tag="Log out"
           icon="sign-out"
-          onPress={() => {
-            AsyncStorage.removeItem('token');
-            navigation.navigate('Login');
-          }
-          }
+          onPress={async () => {
+            try {
+              await AsyncStorage.removeItem('token');
+              navigation.navigate('Login');
+            }
+            catch (exception) {
+              console.log(exception)
+            }
+          }}
         />
         <CircleButton
           bold
@@ -99,7 +103,7 @@ const ProfileScreen = ({ navigation }) => {
           }}
         />
       </View>
-      <View style={{marginHorizontal: 20}}>
+      <View style={{ marginHorizontal: 20 }}>
         <Heading>Your Posts</Heading>
         <TouchableOpacity
           style={styles.cardHome}

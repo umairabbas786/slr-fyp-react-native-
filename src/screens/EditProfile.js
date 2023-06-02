@@ -8,6 +8,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Header } from "../assets/constants/Header";
 import { useSelector } from "react-redux";
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 
 export default function EditProfile({ navigation }) {
@@ -17,31 +18,74 @@ export default function EditProfile({ navigation }) {
     fontawesome.library.add(faCamera);
 
     const [image, setImage] = useState('https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png');
-    const [userType, setUserType] = useState(userData.user_type);
-    const [gender, setGender] = useState(userData.gender);
 
-    const [firstName, setFirstName] = useState(userData.first_name);
-    const [lastName, setLastName] = useState(userData.last_name);
-    const [registration, setRegistration] = useState(userData.registration_number);
-    const [email, setEmail] = useState(userData.email);
     const [phone, setPhone] = useState(userData.phone);
     const [semester, setSemester] = useState(userData.current_semester);
-    const [degree, setDegree] = useState(userData.degree);
     const [course, setCourse] = useState(userData.teaching_course);
     const [department, setDepartment] = useState(userData.teaching_department);
 
-    const handleMale = () => {
-        setGender('MALE');
-    }
-    const handleFemale = () => {
-        setGender('FEMALE');
-    }
     const semsters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-    const degrees = ["degree 1", "degree 2"];
     const courses = ["course 1", "course 2"];
     const departments = ["department 1", "department 2"];
 
-    const addImage = () => { };
+    const requestExternalWritePermission = async () => {
+        if (Platform.OS === 'android') {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                    {
+                        title: 'External Storage Write Permission',
+                        message: 'App needs write permission',
+                    },
+                );
+                // If WRITE_EXTERNAL_STORAGE Permission is granted
+                return granted === PermissionsAndroid.RESULTS.GRANTED;
+            } catch (err) {
+                console.log(err);
+                console.log('Write permission err', err);
+            }
+            return false;
+        } else return true;
+    };
+
+    const addImage = async () => {
+
+        let options = {
+            mediaType: 'photo',
+            maxWidth: 200,
+            maxHeight: 200,
+            allowsEditing: true,
+            aspect: [4, 3],
+        }
+
+        let isStoragePermitted = await requestExternalWritePermission();
+
+        let _image = launchImageLibrary(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled camera picker');
+                return;
+            } else if (response.errorCode == 'camera_unavailable') {
+                console.log('Camera not available on device');
+                return;
+            } else if (response.errorCode == 'permission') {
+                console.log('Permission not satisfied');
+                return;
+            } else if (response.errorCode == 'others') {
+                console.log(response.errorMessage);
+                return;
+            }
+            console.log('base64 -> ', response.base64);
+            console.log('uri -> ', response.uri);
+            console.log('width -> ', response.width);
+            console.log('height -> ', response.height);
+            console.log('fileSize -> ', response.fileSize);
+            console.log('type -> ', response.type);
+            console.log('fileName -> ', response.fileName);
+        });
+
+    };
     return (
         <View style={styles.ProfileMainContainer}>
             <Header back={() => navigation.goBack()} tag="Edit Profile" />
@@ -60,7 +104,7 @@ export default function EditProfile({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {userType === 'TEACHER' ? '' : userType ? (
+                    {userData.user_type === 'TEACHER' ? '' : userData.user_type ? (
                         <View>
                             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
                                 <View style={{ flex: 1, flexDirection: 'column' }}>

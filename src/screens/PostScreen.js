@@ -98,7 +98,6 @@ const PostScreen = ({ navigation }) => {
   return (
     <>
       <Root>
-
         <AnimatedLoader
           visible={loader}
           overlayColor="rgba(255,255,255,0.75)"
