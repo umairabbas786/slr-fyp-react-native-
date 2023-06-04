@@ -137,7 +137,7 @@ export default function SignupScreen({ navigation }) {
         else if (password === '') {
             showErrorToast('Password is Required');
         }
-        else if (password.length < 6) {
+        else if (password !== '' && password.length < 6) {
             showErrorToast('Password Length should be greater than 5');
         }
         else {
