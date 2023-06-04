@@ -29,9 +29,7 @@ function Settings({ navigation }) {
           <ScrollView style={{ marginHorizontal: 10 }}>
               <View style={{ height: 15 }} />
               <Text style={styles.texted}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                  nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                  sed diam voluptua.
+                  Manage your incoming and outgoing notification settings.
               </Text>
               <CustomTab
                   type={'switch'}
@@ -42,7 +40,7 @@ function Settings({ navigation }) {
               <View style={{ height: 15 }} />
 
               <Text style={styles.texted}>
-                  Change your account password to make it more your account more secure.
+                  Change your account password to make your account more secure.
               </Text>
               <CustomTab
                   type={'arrowOnly'}
