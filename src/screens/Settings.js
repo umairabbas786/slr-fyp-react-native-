@@ -29,7 +29,7 @@ function Settings({ navigation }) {
           <ScrollView style={{ marginHorizontal: 10 }}>
               <View style={{ height: 15 }} />
               <Text style={styles.texted}>
-                  Manage your incoming and outgoing notification settings.
+                  Streamline your app experience with our comprehensive notification management system, effortlessly handling incoming and outgoing alerts with ease.
               </Text>
               <CustomTab
                   type={'switch'}
