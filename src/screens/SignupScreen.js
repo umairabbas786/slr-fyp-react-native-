@@ -107,7 +107,7 @@ export default function SignupScreen({ navigation }) {
         else if (registration.length <= 10 && student === true) {
             showErrorToast('Invalid Registration Id');
         }
-        else if (phone.length < 10) {
+        else if (phone != '' && phone.length < 10) {
             showErrorToast('Invalid Phone Number');
         }
         else if (email === '') {
