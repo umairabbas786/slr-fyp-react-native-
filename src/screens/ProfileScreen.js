@@ -110,9 +110,9 @@ const ProfileScreen = ({ navigation }) => {
           }}
         />
       </View>
-      {userPosts.length > 0 ? userPosts.map((posts, index) => (
         <View style={{ marginHorizontal: 20 }}>
-          <Heading>Your Posts</Heading>
+        <Heading>Your Posts</Heading>
+        {userPosts.length > 0 ? userPosts.map((posts, index) => (
           <TouchableOpacity
             style={styles.cardHome}
             onPress={() => {
@@ -153,8 +153,8 @@ const ProfileScreen = ({ navigation }) => {
               }}>No Answer yet</Text>
             </View>
           </TouchableOpacity>
+          )) : <Text style={{color: 'grey', textAlign: 'center', marginTop: 10, fontSize: 18}}>No Data Found</Text>}
         </View>
-      )) : ''}
     </ScrollView>
   );
 };
