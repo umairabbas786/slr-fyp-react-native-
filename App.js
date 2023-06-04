@@ -10,11 +10,11 @@ import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import MainScreen from './src/screens/MainScreen';
 import Settings from './src/screens/Settings';
-import SecurityPrivacy from './src/screens/Security&Privacy';
 import EditProfile from './src/screens/EditProfile';
 import Message from './src/screens/Message';
 import NotificationScreen from './src/screens/NotificationScreen';
 import RegisterSuccess from './src/screens/RegisterSuccess';
+import ChangePassword from './src/screens/ChangePassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +33,7 @@ const App = () => {
         <Stack.Screen name="ForgetSuccess" component={ForgetSuccess} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="SecurityPrivacy" component={SecurityPrivacy} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Message" component={Message} />
         <Stack.Screen name="Notification" component={NotificationScreen} />

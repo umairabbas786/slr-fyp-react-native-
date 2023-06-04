@@ -28,13 +28,6 @@ function Settings({ navigation }) {
 
           <ScrollView style={{ marginHorizontal: 10 }}>
               <View style={{ height: 15 }} />
-              <CustomTab
-                  type={'switch'}
-                  title="Incognito mode"
-                  isEnabled={incognitonabled}
-                  setIsEnabled={setIncognitoEnabled}
-              />
-              <View style={{ height: 15 }} />
               <Text style={styles.texted}>
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                   nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
@@ -49,15 +42,13 @@ function Settings({ navigation }) {
               <View style={{ height: 15 }} />
 
               <Text style={styles.texted}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                  nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                  sed diam voluptua.
+                  Change your account password to make it more your account more secure.
               </Text>
               <CustomTab
                   type={'arrowOnly'}
-                  title="Security & Privacy"
+                  title="Change Password"
                   onPress={() => {
-                      navigation.navigate('SecurityPrivacy');
+                      navigation.navigate('ChangePassword');
                   }}
               />
               <CustomTab

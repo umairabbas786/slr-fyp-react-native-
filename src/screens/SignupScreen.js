@@ -326,7 +326,6 @@ export default function SignupScreen({ navigation }) {
                                 <TouchableOpacity
                                     style={styles.buttonDark}
                                     onPress={handleSubmit}
-                                // onPress={() => navigation.navigate('Otp', { name: 'signup' })}
                                 >
                                     <Text style={styles.buttonTextDark}>Sign up</Text>
                                 </TouchableOpacity>
