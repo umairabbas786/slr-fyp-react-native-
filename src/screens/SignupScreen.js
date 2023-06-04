@@ -107,6 +107,9 @@ export default function SignupScreen({ navigation }) {
         else if (registration.length <= 10 && student === true) {
             showErrorToast('Invalid Registration Id');
         }
+        else if (phone.length < 10) {
+            showErrorToast('Invalid Phone Number');
+        }
         else if (email === '') {
             showErrorToast('Email is Required');
         }
@@ -188,18 +191,6 @@ export default function SignupScreen({ navigation }) {
                         </Text>
                     </View>
                     <View style={{ flex: 1, marginHorizontal: 20 }}>
-                        {/* <View style={styles.containerSignup}>
-                        {
-                            image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-                        }
-                        <View style={styles.uploadBtnContainerSignup}>
-                            <TouchableOpacity onPress={addImage} style={styles.uploadBtnSignup} >
-                                <Text style={{ color: 'black' }}>{image ? 'Edit' : 'Upload'}</Text>
-                                <FontAwesomeIcon icon="camera" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <Text style={{ marginBottom: 20, textAlign: 'center', color: 'white' }}>Upload Profile Picture</Text> */}
                         <Text style={{ color: 'white', marginBottom: 0, marginLeft: 5 }}>Continue as </Text>
                         <View style={{ flex: 1, flexDirection: 'row', marginBottom: 15, justifyContent: 'space-evenly' }}>
                             <TouchableOpacity
