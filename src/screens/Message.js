@@ -28,8 +28,8 @@ function Message({ navigation, route }) {
 
     const [socket, setSocket] = useState(null);
 
-    const connectToSocket = () => {
-        const newSocket = io('https://slr.umairabbas.me');
+    const connectToSocket = async () => {
+        const newSocket = await io('https://slr.umairabbas.me');
         newSocket.on('connect', () => {
             console.log('Socket connected');
         });
@@ -40,6 +40,15 @@ function Message({ navigation, route }) {
         connectToSocket()
         getAllMessages()
     }, []);
+
+    useEffect(() => {
+        if(socket){
+            socket.on("new-message", (data) => {
+                //getAllMessages();
+                setConversation((prevConversation) => [...conversation,data]);
+            })
+        }
+    },[socket])
 
     const getAllMessages = async () => {
         const token = await AsyncStorage.getItem('token');
@@ -58,31 +67,22 @@ function Message({ navigation, route }) {
             redirect: 'follow'
         };
 
-        fetch("https://slr.umairabbas.me/getmessages", requestOptions)
-            .then(response => response.json())
-            .then((response) => {
-                setConversation(response.response);
-                flatList.current.scrollToEnd();
-            })
-            .catch(error => console.log('error', error));
+        const response = await fetch("https://slr.umairabbas.me/getmessages", requestOptions);
+        const data = await response.json();
+        setConversation(data.response);
     }
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         const Data = {
             message,
             user_id: userData.id,
             other_id: id,
             sender: userData.id,
         };
-        socket.emit('send-message', Data, (cb) => {
-            setConversation([...conversation, cb]);
-            flatList.current.scrollToEnd();
-        });
         setMessage('');
-        socket.on("new-message", (data) => {
-            setConversation([...conversation, data]);
-            flatList.current.scrollToEnd();
-        })
+        const send = await socket.emit('send-message', Data, (data) => {
+            setConversation((prevConversation) => [...conversation,data]);
+        });
     };
 
     const renderItem = ({ item, index }) => {
@@ -171,7 +171,9 @@ function Message({ navigation, route }) {
                     </View>
                 </View>
             </View>
+            <View style={{ flex: 1 }}>
             <FlatList
+                keyExtractor={(item, index) => item.id.toString()}
                 ref={flatList}
                 data={conversation}
                 renderItem={renderItem}
@@ -182,7 +184,9 @@ function Message({ navigation, route }) {
                     paddingBottom: 100,
                 }}
                 ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+                ListFooterComponent={<View style={{ height: 50 }} />}
             />
+            </View>
             <View
                 style={{
                     width: '100%',
