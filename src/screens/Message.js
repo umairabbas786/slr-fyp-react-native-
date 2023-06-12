@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View,
     Text,
@@ -57,14 +57,26 @@ const data = [
 function Message({ navigation, route }) {
 
     const flatList = React.useRef(null);
-
-    const socket = io.connect("https://slr.umairabbas.me");
     const [messageFocus, setMessageFocus] = useState(false);
     const [conversation, setConversation] = useState([]);
     const [message, setMessage] = useState('');
 
     const userData = useSelector((state) => state.userDetails.user);
-    const { id,name,profilePicture } = route.params;
+    const { id, name, profilePicture } = route.params;
+
+    const [socket, setSocket] = useState(null);
+
+    const connectToSocket = () => {
+        const newSocket = io('https://slr.umairabbas.me');
+        newSocket.on('connect', () => {
+            console.log('Socket connected');
+        });
+        setSocket(newSocket);
+    };
+
+    useEffect(() => {
+        connectToSocket()
+    }, []);
 
     const handleSendMessage = () => {
         const Data = {
@@ -73,23 +85,28 @@ function Message({ navigation, route }) {
             other_id: id,
             sender: userData.id,
         };
-        socket.on('connection', () => {
-            console.log('Connected to Socket.IO server');
-      
-            // Send an event to the server
-            socket.emit('send-message', Data , (err) => {
-                console.log(error)
-            });
-          });
-        socket.on("send-message", Data);
-        setMessage('');
-        socket.on('new-message', message => {
-            console.log('message........');
-            console.log(message);
-            // setData([...data, message]);
-            // scroll the list to the bottom after each new message
-            // flatListRef.current.scrollToEnd();
+        socket.emit('send-message', Data, (cb) => {
+            console.log(cb)
         });
+        // socket.on('connect', (error) => {
+        //     console.log(error);
+        //     // Send an event to the server
+        //     socket.emit('send-message', Data, (err) => {
+        //         console.log(err)
+        //     });
+        // });
+        // socket.on("send-message", Data);
+        setMessage('');
+        socket.on("new-message", (data) => {
+            console.log(data)
+        })
+        // socket.on('new-message', message => {
+        //     console.log('message........');
+        //     console.log(message);
+        //     // setData([...data, message]);
+        //     // scroll the list to the bottom after each new message
+        //     // flatListRef.current.scrollToEnd();
+        // });
         // flatList.current.scrollToEnd();
     };
 
@@ -160,7 +177,7 @@ function Message({ navigation, route }) {
                         }}
                     />
                     <Image
-                        source={{uri: profilePicture}}
+                        source={{ uri: profilePicture }}
                         style={{ width: 30, height: 30, borderRadius: 50 }}
                     />
                     <View style={{ marginLeft: 10 }}>
