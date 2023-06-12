@@ -5,6 +5,7 @@ import { Header } from "../assets/constants/Header";
 import AnimatedLoader from 'react-native-animated-loader';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RefreshControl } from "react-native-gesture-handler";
+import showTimeAgo from "showtimeago";
 
 
 const Heading = ({ children }) => {
@@ -85,8 +86,9 @@ const ChatScreen = ({ navigation }) => {
             style={{
               backgroundColor: '#0B2265',
               borderRadius: 100,
+              padding: 1
             }}>
-            <Text style={styles.conversationFloatText}>{item.last_message_at}</Text>
+            <Text style={styles.conversationFloatText}>{showTimeAgo(item.last_message_at)}</Text>
           </View>
         ) : (
           <View
@@ -100,6 +102,20 @@ const ChatScreen = ({ navigation }) => {
       </TouchableOpacity>
     );
   };
+
+  const NoDataFound = () => {
+    return (
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Image
+          source={require('../assets/images/notfound.gif')}
+          style={{ alignSelf: 'center', marginTop: 150 }}
+        />
+      </View>
+    )
+  }
 
   return (
     <>
@@ -116,6 +132,7 @@ const ChatScreen = ({ navigation }) => {
         <FlatList
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={getScreenData} />}
           data={conversations}
+          ListEmptyComponent={NoDataFound}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => (

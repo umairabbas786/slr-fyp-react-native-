@@ -13,46 +13,8 @@ import styles from '../assets/style/styles';
 import { theme } from '../assets/constants/Theme';
 import { io } from "socket.io-client";
 import { useSelector } from 'react-redux';
-
-
-const data = [
-    {
-        conversation: [
-            {
-                msg: 'Yeah. Right! As if that would happen!',
-                mine: false,
-            },
-            {
-                msg: 'Anywho, gotta roll. Gnight!',
-                mine: true,
-            },
-            {
-                msg: 'Goodnight!',
-                mine: false,
-            },
-        ],
-    },
-    {
-        conversation: [
-            {
-                msg: 'Wassup!!!!!!',
-                mine: true,
-            },
-            {
-                msg: 'So what did I miss yesterday?',
-                mine: true,
-            },
-            {
-                msg: 'So, while you were gone, a lot has happened. Let me give you a brief idea.',
-                mine: false,
-            },
-            {
-                msg: 'Natalie from HR cam to our floor looking for Steven. Remember the mistake he had made last week? It was definitely related to this!!!',
-                mine: false,
-            },
-        ],
-    },
-];
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import showTimeAgo from "showtimeago";
 
 function Message({ navigation, route }) {
 
@@ -76,7 +38,34 @@ function Message({ navigation, route }) {
 
     useEffect(() => {
         connectToSocket()
+        getAllMessages()
     }, []);
+
+    const getAllMessages = async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        var myHeaders = new Headers();
+        myHeaders.append("auth-token", token);
+        myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({
+            "other_id": id
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://slr.umairabbas.me/getmessages", requestOptions)
+            .then(response => response.json())
+            .then((response) => {
+                setConversation(response.response);
+                flatList.current.scrollToEnd();
+            })
+            .catch(error => console.log('error', error));
+    }
 
     const handleSendMessage = () => {
         const Data = {
@@ -86,28 +75,14 @@ function Message({ navigation, route }) {
             sender: userData.id,
         };
         socket.emit('send-message', Data, (cb) => {
-            console.log(cb)
+            setConversation([...conversation, cb]);
+            flatList.current.scrollToEnd();
         });
-        // socket.on('connect', (error) => {
-        //     console.log(error);
-        //     // Send an event to the server
-        //     socket.emit('send-message', Data, (err) => {
-        //         console.log(err)
-        //     });
-        // });
-        // socket.on("send-message", Data);
         setMessage('');
         socket.on("new-message", (data) => {
-            console.log(data)
+            setConversation([...conversation, data]);
+            flatList.current.scrollToEnd();
         })
-        // socket.on('new-message', message => {
-        //     console.log('message........');
-        //     console.log(message);
-        //     // setData([...data, message]);
-        //     // scroll the list to the bottom after each new message
-        //     // flatListRef.current.scrollToEnd();
-        // });
-        // flatList.current.scrollToEnd();
     };
 
     const renderItem = ({ item, index }) => {
@@ -115,43 +90,52 @@ function Message({ navigation, route }) {
             <View
                 style={{
                     mine: true,
-                    backgroundColor: item.mine ? theme.colors.BG : '#ECECEC',
-                    alignSelf: item.mine ? 'flex-end' : 'flex-start',
+                    backgroundColor: item.sender === userData.id ? theme.colors.BG : '#ECECEC',
+                    alignSelf: item.sender === userData.id ? 'flex-end' : 'flex-start',
                     paddingVertical: 15,
                     paddingHorizontal: 10,
                     width: '80%',
                     borderRadius: 15,
+                    flex:1
                 }}>
                 <Text
                     style={{
-                        color: 'grey',
-                        paddingBottom: 1,
-                        fontSize: 14,
-                        fontWeight: 600,
-                    }}>umair abbas.</Text>
-                <Text
-                    style={{
-                        color: item.mine ? 'white' : '#1A1A1A',
+                        color: item.sender === userData.id ? 'white' : '#1A1A1A',
                         fontSize: 14,
                         fontWeight: 800
                     }}>
-                    {item.msg}
+                    {item.message}
+                </Text>
+                <Text
+                    style={{
+                        color: item.sender === userData.id ? 'grey' : '#1A1A1A',
+                        alignSelf: 'flex-end',
+                        fontSize: 12,
+                        fontWeight: 600
+                    }}>
+                    {showTimeAgo(item.createdAt)}
                 </Text>
             </View>
         );
     };
 
-    const subRenderItem = ({ item, index }) => {
+    const NoDataFound = () => {
         return (
-            <View>
-                <FlatList
-                    data={item.conversation}
-                    renderItem={renderItem}
-                    ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-                />
+            <View style={
+                {
+                    alignSelf: 'center',
+                    backgroundColor: '#1A1A1A',
+                    padding: 8,
+                    borderRadius: 20
+                }}>
+                <Text style={{ color: 'gold' }}><Entypo
+                        name="lock"
+                        color="gold"
+                        size={14}
+                    />{' '}messages are end to end encrypted</Text>
             </View>
-        );
-    };
+        )
+    }
 
     return (
         <View style={styles.profileMainContainer}>
@@ -189,8 +173,9 @@ function Message({ navigation, route }) {
             </View>
             <FlatList
                 ref={flatList}
-                data={data}
-                renderItem={subRenderItem}
+                data={conversation}
+                renderItem={renderItem}
+                ListEmptyComponent={NoDataFound}
                 contentContainerStyle={{
                     paddingHorizontal: '5%',
                     paddingTop: 20,
@@ -204,14 +189,7 @@ function Message({ navigation, route }) {
                     position: 'absolute',
                     bottom: 0,
                 }}>
-                <View
-                    style={[
-                        styles.bottomCont,
-                        {
-                            // height: emoji ? height / 4 : height / 1.3,
-                            // top: emoji ? height / 1.6 : height / 1.22,
-                        },
-                    ]}>
+                <View>
                     <View
                         style={{
                             width: '90%',
@@ -237,9 +215,6 @@ function Message({ navigation, route }) {
                             <TextInput
                                 style={{ width: '90%', padding: 0, color: 'black' }}
                                 placeholder="Send a Chat"
-                                onPressIn={() => {
-                                    flatList.current.scrollToEnd();
-                                }}
                                 onFocus={() => {
                                     setMessageFocus(true);
                                 }}
@@ -268,6 +243,7 @@ function Message({ navigation, route }) {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <View style={{ height: 10 }} />
             </View>
         </View>
     )
