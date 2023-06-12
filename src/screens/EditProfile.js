@@ -139,7 +139,7 @@ export default function EditProfile({ navigation }) {
                         navigation.navigate('Profile');
                     }
                 })
-                .catch(error => console.log('error', error));
+                .catch((error) => {console.log('error', error); setLoader(false)});
         }
     }
 

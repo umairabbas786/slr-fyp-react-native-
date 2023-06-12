@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Dimensions, TouchableOpacity, Image, ToastAndroid } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AnimatedLoader from 'react-native-animated-loader';
@@ -15,6 +15,7 @@ const ConnectScreen = ({ navigation }) => {
   const [pending, setPending] = useState([]);
   const [connect, setConnect] = useState([]);
   const [loader, setLoader] = useState(true);
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const userData = useSelector((state) => state.userDetails.user);
 
@@ -358,9 +359,9 @@ const ConnectScreen = ({ navigation }) => {
         alignItems: 'center',
       }}>
         <Image
-            source={require('../assets/images/notfound.gif')}
-            style={{alignSelf: 'center', marginTop: 150}}
-          />
+          source={require('../assets/images/notfound.gif')}
+          style={{ alignSelf: 'center', marginTop: 150 }}
+        />
       </View>
     )
   }
@@ -432,6 +433,7 @@ const ConnectScreen = ({ navigation }) => {
           />
         </View>
         <FlatList
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={getScreenData} />}
           ListEmptyComponent={NoDataFound}
           renderItem={
             selected === 'Lookup'

@@ -41,6 +41,7 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "showtimeago": "^3.3.13",
+    "socket.io-client": "^4.6.2",
     "sync-storage": "^0.4.2",
     "validator": "^13.9.0"
   },

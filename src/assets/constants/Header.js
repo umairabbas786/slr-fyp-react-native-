@@ -40,17 +40,18 @@ const Header = ({ tag, back, sub, navigation }) => {
             {back ? null : sub ? (
                 <Entypo name="chevron-right" color="white" size={24} style={{}} />
             ) : (
-                <TouchableOpacity activeOpacity={0.7} style={styles.headerButton}>
-                    <View style={styles.searchColor} />
-                    <AntDesign
-                        name={'search1'}
-                        color={'white'}
-                        size={18}
-                        onPress={() => {
-                            navigation.navigate('SearchFilters');
-                        }}
-                    />
-                </TouchableOpacity>
+                // <TouchableOpacity activeOpacity={0.7} style={styles.headerButton}>
+                //     <View style={styles.searchColor} />
+                //     <AntDesign
+                //         name={'search1'}
+                //         color={'white'}
+                //         size={18}
+                //         onPress={() => {
+                //             navigation.navigate('SearchFilters');
+                //         }}
+                //     />
+                // </TouchableOpacity>
+                ''
             )}
         </View>
     );
