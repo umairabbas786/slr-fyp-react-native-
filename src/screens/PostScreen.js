@@ -16,6 +16,7 @@ import AnimatedLoader from 'react-native-animated-loader';
 import styles from '../assets/style/styles';
 import { Root, Popup } from 'react-native-popup-confirm-toast';
 import { setPost } from '../redux/actions/userPosts';
+import { setPosts } from '../redux/actions/allPosts';
 
 const { height } = Dimensions.get('window');
 
@@ -66,6 +67,7 @@ const PostScreen = ({ navigation }) => {
           } else {
             setLoader(false);
             dispatch(setPost(response.posts));
+            dispatch(setPosts(response.allposts));
             setText('');
             Popup.show({
               type: 'success',

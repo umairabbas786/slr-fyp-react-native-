@@ -15,6 +15,8 @@ import Message from './src/screens/Message';
 import NotificationScreen from './src/screens/NotificationScreen';
 import RegisterSuccess from './src/screens/RegisterSuccess';
 import ChangePassword from './src/screens/ChangePassword';
+import ChatScreen from './src/screens/ChatScreen';
+import Comment from './src/screens/Comments';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +38,8 @@ const App = () => {
         <Stack.Screen name="ChangePassword" component={ChangePassword} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Message" component={Message} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="Comment" component={Comment} />
         <Stack.Screen name="Notification" component={NotificationScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -136,6 +136,9 @@ const ConnectScreen = ({ navigation }) => {
           accountName={item.user_type === 'STUDENT' ? item.registration_number : item.email}
         />
         <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Chat')
+          }}
           style={{
             borderWidth: 0.5,
             borderColor: '#0B2265',

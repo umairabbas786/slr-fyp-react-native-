@@ -11,7 +11,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { Icon } from 'react-native-elements';
 import styles from '../assets/style/styles';
 import { theme } from '../assets/constants/Theme';
-import socket from "../utils/sockets";
 import { useSelector } from 'react-redux';
 
 
@@ -54,14 +53,14 @@ const data = [
     },
 ];
 
-function Message({ navigation, route }) {
+function Comment({ navigation, route }) {
 
     const [messageFocus, setMessageFocus] = useState(false);
     const [conversation, setConversation] = useState([]);
     const [message, setMessage] = useState('');
 
     const userData = useSelector((state) => state.userDetails.user);
-    const { id } = route.params;
+    const { name } = route.params;
 
     const handleSendMessage = () => {
         socket.emit("send-message", {
@@ -140,20 +139,25 @@ function Message({ navigation, route }) {
                           navigation.goBack();
                       }}
                   />
-                  <Image
-                      source={require('../assets/images/img1.png')}
-                      style={{ width: 30, height: 30, borderRadius: 50 }}
-                  />
                   <View style={{ marginLeft: 10 }}>
                       <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
-                          Cesar Jordan
-                      </Text>
-                      <Text style={{ color: 'white', fontWeight: 'normal', fontSize: 10 }}>
-                          Typing something....
+                          Comments
                       </Text>
                   </View>
               </View>
           </View>
+          <View style={
+                {
+                    alignSelf: 'center',
+                    backgroundColor: '#1A1A1A',
+                    padding: 8,
+                    borderRadius: 20,
+                    marginVertical:10,
+                    marginHorizontal:10
+                }}>
+                <Text>Topic:</Text>
+                <Text style={{ color: 'white'}}>{name}</Text>
+            </View>
           <FlatList
               data={data}
               renderItem={subRenderItem}
@@ -238,4 +242,4 @@ function Message({ navigation, route }) {
   )
 }
 
-export default Message
+export default Comment

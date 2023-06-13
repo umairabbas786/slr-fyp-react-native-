@@ -64,9 +64,7 @@ function Message({ navigation, route }) {
         const response = await fetch("https://slr.umairabbas.me/getmessages", requestOptions);
         const data = await response.json();
         setConversation(data.response);
-        if(conversation.length >0){
-            flatList.current.scrollToIndex({index: conversation.length-1})
-        }
+        flatList.current.scrollToEnd({animated: false})
     }
 
     const handleSendMessage = () => {

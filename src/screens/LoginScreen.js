@@ -6,6 +6,7 @@ import AnimatedLoader from 'react-native-animated-loader';
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/actions/userProfile";
 import { setPost } from '../redux/actions/userPosts';
+import { setPosts } from '../redux/actions/allPosts';
 
 export default function LoginScreen({ navigation }) {
 
@@ -70,6 +71,7 @@ export default function LoginScreen({ navigation }) {
             await AsyncStorage.setItem('token', response.authtoken);
             dispatch(setUser(response.response));
             dispatch(setPost(response.posts));
+            dispatch(setPosts(response.allposts));
             navigation.navigate('Main');
           }
         })
