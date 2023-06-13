@@ -4,12 +4,16 @@ import styles from "../assets/style/styles";
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { Image } from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { ScrollView } from "react-native-gesture-handler";
-import AnimatedLoader from 'react-native-animated-loader';
+import { RefreshControl, ScrollView } from "react-native-gesture-handler";
 import showTimeAgo from "showtimeago";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../redux/actions/allPosts";
+import { theme } from "../assets/constants/Theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch();
 
   const post = useSelector((state) => state.allPosts.posts);
 
@@ -18,26 +22,25 @@ const HomeScreen = ({ navigation }) => {
   const [loader, setLoader] = useState(true);
   const [refreshing, setRefreshing] = React.useState(false);
 
-  // const getScreenData = async () => {
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-  //   var raw = "";
+  const getScreenData = async () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = "";
 
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  //   };
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
 
-  //   fetch("https://slr.umairabbas.me/getposts", requestOptions)
-  //     .then(response => response.json())
-  //     .then((response) => {
-  //       setPost(response.response);
-  //       setLoader(false)
-  //     })
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch("https://slr.umairabbas.me/getposts", requestOptions)
+      .then(response => response.json())
+      .then((response) => {
+        dispatch(setPosts(response.response));
+      })
+      .catch(error => console.log('error', error));
+  }
 
   // useEffect(() => {
   //   getScreenData()
@@ -45,13 +48,6 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      {/* <AnimatedLoader
-        visible={loader}
-        overlayColor="rgba(255,255,255,0.75)"
-        animationStyle={styles.lottie}
-        source={require("../assets/loader/loader.json")}
-        speed={1}>
-      </AnimatedLoader> */}
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
           <SimpleLineIcons
@@ -69,7 +65,11 @@ const HomeScreen = ({ navigation }) => {
           }}>Home</Text>
           <Text></Text>
         </View>
-        <ScrollView>
+        <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getScreenData} />
+        }
+        >
           {post.map((posts, index) => (
             <TouchableOpacity
               style={styles.cardHome}
@@ -78,10 +78,20 @@ const HomeScreen = ({ navigation }) => {
                   name: posts.message
                 });
               }}
+              // onPress={async () => {
+              //   try {
+              //     await AsyncStorage.removeItem('token');
+              //     navigation.navigate('Login');
+              //   }
+              //   catch (exception) {
+              //     console.log(exception)
+              //   }
+              // }}
             >
               <Text style={{
-                'color': '#000',
-                'fontWeight': '800',
+                color: '#000',
+                fontWeight: 800,
+                paddingLeft: 10
               }}>{posts.message}</Text>
               <View style={styles.cardInner}>
                 <Image
@@ -92,20 +102,16 @@ const HomeScreen = ({ navigation }) => {
                   <Text style={{ 'color': 'grey' }}>{showTimeAgo(posts.createdAt)}</Text>
                 </Text>
               </View>
-              <View style={styles.likeContainer}>
-                <FontAwesome
-                  name="heart"
-                  color="red"
-                  size={20}
-                  onPress={() => {
-                    setLiked(true)
-                  }}
-                />
+              <View style={styles.bottomContainer}>
                 <Text style={{
-                  'color': 'grey',
-                  'fontWeight': '400',
-                  'fontSize': 16
-                }}>{posts.answers === 0 ? 'No Answers' : posts.answers}</Text>
+                  color: '#fff',
+                  fontWeight: '400',
+                  fontSize: 12,
+                  backgroundColor: theme.colors.BG,
+                  padding: 10,
+                  borderRadius: 15,
+
+                }}>View/Comment</Text>
               </View>
             </TouchableOpacity>
           ))}

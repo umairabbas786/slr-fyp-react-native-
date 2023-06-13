@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   rowDetailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     paddingHorizontal: '10%',
     marginHorizontal: 15,
     marginTop: 25,
@@ -461,6 +461,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 40,
+    marginTop: 5,
+  },
+  bottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     marginTop: 5,
   },
 });
