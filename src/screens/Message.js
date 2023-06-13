@@ -38,17 +38,11 @@ function Message({ navigation, route }) {
 
     useEffect(() => {
         connectToSocket()
-        getAllMessages()
     }, []);
 
     useEffect(() => {
-        if(socket){
-            socket.on("new-message", (data) => {
-                //getAllMessages();
-                setConversation((prevConversation) => [...conversation,data]);
-            })
-        }
-    },[socket])
+        getAllMessages()
+    }, [conversation]);
 
     const getAllMessages = async () => {
         const token = await AsyncStorage.getItem('token');
@@ -70,9 +64,12 @@ function Message({ navigation, route }) {
         const response = await fetch("https://slr.umairabbas.me/getmessages", requestOptions);
         const data = await response.json();
         setConversation(data.response);
+        if(conversation.length >0){
+            flatList.current.scrollToIndex({index: conversation.length-1})
+        }
     }
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = () => {
         const Data = {
             message,
             user_id: userData.id,
@@ -80,9 +77,16 @@ function Message({ navigation, route }) {
             sender: userData.id,
         };
         setMessage('');
-        const send = await socket.emit('send-message', Data, (data) => {
-            setConversation((prevConversation) => [...conversation,data]);
+        socket.emit('send-message', Data, (data) => {
+            setConversation([...conversation,data]);
+            // flatList.current.scrollToEnd({animated: true});
+            flatList.current.scrollToIndex({index: conversation.length-1})
         });
+        socket.on("new-message", (data) => {
+            //getAllMessages();
+            setConversation([...conversation,data]);
+            flatList.current.scrollToIndex({index: conversation.length-1})
+        })
     };
 
     const renderItem = ({ item, index }) => {
@@ -176,7 +180,10 @@ function Message({ navigation, route }) {
                 keyExtractor={(item, index) => item.id.toString()}
                 ref={flatList}
                 data={conversation}
-                renderItem={renderItem}
+                // renderItem={renderItem}
+                renderItem={({ item }) => (
+                    renderItem({item})
+                )}
                 ListEmptyComponent={NoDataFound}
                 contentContainerStyle={{
                     paddingHorizontal: '5%',
@@ -219,6 +226,9 @@ function Message({ navigation, route }) {
                             <TextInput
                                 style={{ width: '90%', padding: 0, color: 'black' }}
                                 placeholder="Send a Chat"
+                                onPressIn={() => {
+                                    flatList.current.scrollToIndex({index: conversation.length-1})
+                                }}
                                 onFocus={() => {
                                     setMessageFocus(true);
                                 }}
