@@ -350,6 +350,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 10,
     paddingHorizontal: '5%',
+    backgroundColor: '#F6FAFD',
+    marginHorizontal: 15,
+    borderRadius: 15
   },
   conversationImage: {
     flexDirection: 'row',
