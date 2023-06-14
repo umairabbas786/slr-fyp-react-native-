@@ -46,9 +46,9 @@ export default function SignupScreen({ navigation }) {
     const handleFemale = () => {
         setGender('FEMALE');
     }
-    const semsters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+    const semsters = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
     const degrees = ["BS Computer Science", "BS Software Engineering", "Bachelors Of Business Administration", "BS Accounting & Finance", "BS International Relations", "BS Psychology", "BS English Language & Literature", "BS Economics", "Doctor Of Pharmacy", "BS Biochemistry", "BS Microbiology", "BS Biotechnology", "BS Food Science and Technology", "B.Sc. Electrical Engineering", "B.Sc. Mechanical Engineering", "B.Sc. Civil Engineering", "BS Physics", "Bs Statistics", "BS Chemistry", "BS Botany", "BS Mathematics", "BS Zoology", "BS Media and Communication Studies", "Bachelor of Law LLB(Hons.)", "BS Data Science", "BS Business Analytics", "BS Real Estate Management", "BS Medical Laboratory Technology", "BS Artificial Intelligence", "BS Political Science", "BS Film, TV & Digital Media", "BS Audit And Taxation", "BBAPost ADP", "BS Human Nutrition and Dietetics", "BS Robotics & Intelligent Systems", "ADPAccounting and Finance", "ADPBusiness Administration", "ADPComputer Science", "ADSDouble Math and Physics", "ADSZoology, Botany and Chemistry","MS Computer Science"];
-    const courses = ["course 1", "course 2"];
+    const courses = ["CSCS1513 - Introduction to Computing", "CSCS1511 - Introduction to Computing Lab", "CSHU2833 - Logic Thinking", "CSHU1823 - English Composition & Comprehension", "CSSS1723 - Basic Electronics", "CSHU1863 - Islamic and Religious Studies", "CSCP1013 - Programming Fundamentals", "CSCP1011 - Programming Fundamentals Lab", "CSCS2523 - Digital Logic Design", "CSCS2521 - Digital Logic Design Lab", "CSSS1713 - Calculus and Analytical Geometry", "CSHU1873 - Communication & Presentation Skills", "CSHU1893 - Pakistan Studies", "CSCP2023 - Object-Oriented Programming", "CSCP2021 - Object-Oriented Programming Lab", "CSCS3543 - Computer Org. & Assembly Lang.", "CSCS3541 - Computer Org. & Assembly Lang. Lab", "CSAL1213 - Discrete Structures", ];
     const departments = ["Faculty of Pharmaceutical Sciences", "Faculty Of Languages & Literature", "Faculty of Information Technology And Computer Science", "Faculty of Engineering", "Faculty of Media And Mass Communication", "Faculty of Humanities And Social Sciences", "Faculty of Science & Technology", "Faculty of Management Sciences", "Faculty of Law"];
 
     const showErrorToast = (error) => {
@@ -392,6 +392,8 @@ export default function SignupScreen({ navigation }) {
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
                                     defaultValue={course}
+                                    search={true}
+                                    searchPlaceHolder="Search Your Course"
                                     dropdownStyle={styles.dropdownStyle}
                                     selectedRowStyle={styles.selectedField}
                                     selectedRowTextStyle={styles.selectedFieldText}

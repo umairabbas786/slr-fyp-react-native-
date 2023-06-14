@@ -225,7 +225,7 @@ function Message({ navigation, route }) {
                                 style={{ width: '90%', padding: 0, color: 'black' }}
                                 placeholder="Send a Chat"
                                 onPressIn={() => {
-                                    flatList.current.scrollToIndex({index: conversation.length-1})
+                                    conversation.length === 0 ? console.log(conversation.length) : flatList.current.scrollToIndex({index: conversation.length-1})
                                 }}
                                 onFocus={() => {
                                     setMessageFocus(true);
