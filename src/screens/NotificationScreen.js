@@ -118,9 +118,9 @@ function NotificationScreen({ navigation }) {
                     ListEmptyComponent={NoDataFound}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
-                    ItemSeparatorComponent={() => (
-                        <View style={styles.conversationSeparator} />
-                    )}
+                    // ItemSeparatorComponent={() => (
+                    //     <View style={styles.conversationSeparator} />
+                    // )}
                 />
             </View>
         </>

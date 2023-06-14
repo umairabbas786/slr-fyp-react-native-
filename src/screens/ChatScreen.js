@@ -62,12 +62,12 @@ const ChatScreen = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => {
           item.blocked === false ?
-            navigation.navigate('Message', 
-            { 
-              id: item.user_id,
-              name: item.name,
-              profilePicture: item.profile_picture === null ? "https://e7.pngegg.com/pngimages/527/663/png-clipart-logo-person-user-person-icon-rectangle-photography-thumbnail.png" : item.profile_picture 
-            }) : showErrorToast('User Blocked You')
+            navigation.navigate('Message',
+              {
+                id: item.user_id,
+                name: item.name,
+                profilePicture: item.profile_picture === null ? "https://e7.pngegg.com/pngimages/527/663/png-clipart-logo-person-user-person-icon-rectangle-photography-thumbnail.png" : item.profile_picture
+              }) : showErrorToast('User Blocked You')
         }}
         activeOpacity={0.7}
         style={styles.conversationContainer}>
@@ -135,9 +135,9 @@ const ChatScreen = ({ navigation }) => {
           ListEmptyComponent={NoDataFound}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => (
-            <View style={styles.conversationSeparator} />
-          )}
+          // ItemSeparatorComponent={() => (
+          //   <View style={styles.conversationSeparator} />
+          // )}
         />
       </View>
     </>

@@ -352,7 +352,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5%',
     backgroundColor: '#F6FAFD',
     marginHorizontal: 15,
-    borderRadius: 15
+    borderRadius: 15,
+    marginBottom: 5
   },
   conversationImage: {
     flexDirection: 'row',

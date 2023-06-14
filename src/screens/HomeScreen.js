@@ -66,6 +66,7 @@ const HomeScreen = ({ navigation }) => {
           <Text></Text>
         </View>
         <ScrollView
+        style={{marginBottom: 65}}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getScreenData} />
         }
@@ -78,15 +79,6 @@ const HomeScreen = ({ navigation }) => {
                   name: posts.message
                 });
               }}
-              // onPress={async () => {
-              //   try {
-              //     await AsyncStorage.removeItem('token');
-              //     navigation.navigate('Login');
-              //   }
-              //   catch (exception) {
-              //     console.log(exception)
-              //   }
-              // }}
             >
               <Text style={{
                 color: '#000',
