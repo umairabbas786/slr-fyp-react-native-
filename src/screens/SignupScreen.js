@@ -47,9 +47,9 @@ export default function SignupScreen({ navigation }) {
         setGender('FEMALE');
     }
     const semsters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-    const degrees = ["degree 1", "degree 2"];
+    const degrees = ["BS Computer Science", "BS Software Engineering", "Bachelors Of Business Administration", "BS Accounting & Finance", "BS International Relations", "BS Psychology", "BS English Language & Literature", "BS Economics", "Doctor Of Pharmacy", "BS Biochemistry", "BS Microbiology", "BS Biotechnology", "BS Food Science and Technology", "B.Sc. Electrical Engineering", "B.Sc. Mechanical Engineering", "B.Sc. Civil Engineering", "BS Physics", "Bs Statistics", "BS Chemistry", "BS Botany", "BS Mathematics", "BS Zoology", "BS Media and Communication Studies", "Bachelor of Law LLB(Hons.)", "BS Data Science", "BS Business Analytics", "BS Real Estate Management", "BS Medical Laboratory Technology", "BS Artificial Intelligence", "BS Political Science", "BS Film, TV & Digital Media", "BS Audit And Taxation", "BBAPost ADP", "BS Human Nutrition and Dietetics", "BS Robotics & Intelligent Systems", "ADPAccounting and Finance", "ADPBusiness Administration", "ADPComputer Science", "ADSDouble Math and Physics", "ADSZoology, Botany and Chemistry","MS Computer Science"];
     const courses = ["course 1", "course 2"];
-    const departments = ["department 1", "department 2"];
+    const departments = ["Faculty of Pharmaceutical Sciences", "Faculty Of Languages & Literature", "Faculty of Information Technology And Computer Science", "Faculty of Engineering", "Faculty of Media And Mass Communication", "Faculty of Humanities And Social Sciences", "Faculty of Science & Technology", "Faculty of Management Sciences", "Faculty of Law"];
 
     const showErrorToast = (error) => {
         ToastAndroid.show(error, ToastAndroid.SHORT);
@@ -260,6 +260,8 @@ export default function SignupScreen({ navigation }) {
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
                                     defaultValue={semester}
+                                    search={true}
+                                    searchPlaceHolder="Search Your Semester"
                                     dropdownStyle={styles.dropdownStyle}
                                     selectedRowStyle={styles.selectedField}
                                     selectedRowTextStyle={styles.selectedFieldText}
@@ -287,6 +289,8 @@ export default function SignupScreen({ navigation }) {
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
                                     defaultValue={degree}
+                                    search={true}
+                                    searchPlaceHolder="Search Your Degree"
                                     dropdownStyle={styles.dropdownStyle}
                                     selectedRowStyle={styles.selectedField}
                                     selectedRowTextStyle={styles.selectedFieldText}
@@ -412,6 +416,8 @@ export default function SignupScreen({ navigation }) {
                                     buttonTextStyle={styles.buttonTextLight}
                                     dropdownIconPosition="right"
                                     defaultValue={department}
+                                    search={true}
+                                    searchPlaceHolder="Search Your Department"
                                     dropdownStyle={styles.dropdownStyle}
                                     selectedRowStyle={styles.selectedField}
                                     selectedRowTextStyle={styles.selectedFieldText}
