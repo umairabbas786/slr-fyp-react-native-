@@ -14,6 +14,7 @@ import CustomTab from '../assets/constants/CustomTab';
 import { Header } from '../assets/constants/Header';
 import { CustomButton } from '../assets/constants/CustomButton';
 import { theme } from '../assets/constants/Theme';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
@@ -60,8 +61,14 @@ function Settings({ navigation }) {
                   color={theme.colors.primarydark}
                   txtColor="white"
                   children="Delete account"
-                  onPress={() => {
+                  onPress={async () => {
+                    try {
+                      await AsyncStorage.removeItem('token');
                       navigation.navigate('Login');
+                    }
+                    catch (exception) {
+                      console.log(exception)
+                    }
                   }}
               />
 
