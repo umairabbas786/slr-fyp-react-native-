@@ -9,6 +9,7 @@ import showTimeAgo from "showtimeago";
 import { setPosts } from "../redux/actions/allPosts";
 import { setPost } from "../redux/actions/userPosts";
 import AnimatedLoader from 'react-native-animated-loader';
+import { theme } from "../assets/constants/Theme";
 
 const Heading = ({ children }) => {
   return <Text style={styles.customHeadingForProfile}>{children}</Text>;
@@ -213,11 +214,16 @@ const ProfileScreen = ({ navigation }) => {
                 </Text>
               </View>
               <View style={styles.likeContainer}>
-                <Text style={{
-                  'color': 'grey',
-                  'fontWeight': '400',
-                  'fontSize': 16
-                }}>No Answer yet</Text>
+              <Text style={{
+                  color: '#fff',
+                  fontWeight: '400',
+                  fontSize: 12,
+                  backgroundColor: theme.colors.BG,
+                  padding: 8,
+                  borderRadius: 15,
+                  paddingHorizontal: 20
+
+                }}>View/Comment</Text>
                 <TouchableOpacity
                 onPress={() => {
                   handleDelete(posts.id)
