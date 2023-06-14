@@ -77,11 +77,9 @@ function Message({ navigation, route }) {
         setMessage('');
         socket.emit('send-message', Data, (data) => {
             setConversation([...conversation,data]);
-            // flatList.current.scrollToEnd({animated: true});
             flatList.current.scrollToIndex({index: conversation.length-1})
         });
         socket.on("new-message", (data) => {
-            //getAllMessages();
             setConversation([...conversation,data]);
             flatList.current.scrollToIndex({index: conversation.length-1})
         })

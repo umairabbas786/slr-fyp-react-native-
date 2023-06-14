@@ -191,7 +191,8 @@ const ProfileScreen = ({ navigation }) => {
               style={styles.cardHome}
               onPress={() => {
                 navigation.navigate('Comment', {
-                  name: posts.message
+                  name: posts.message,
+                  id: posts.id
                 });
               }}
             >
