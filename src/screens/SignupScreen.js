@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text, View, Image, TextInput, TouchableOpacity, Alert, ScrollView, ToastAndroid } from 'react-native';
 import styles from '../assets/style/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import fontawesome from '@fortawesome/fontawesome';
 import { faCamera } from '@fortawesome/fontawesome-free-solid';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -14,7 +13,6 @@ const validator = require('validator');
 export default function SignupScreen({ navigation }) {
     fontawesome.library.add(faCamera);
 
-    const [image, setImage] = useState(null);
     const [loader, setLoader] = useState(false);
 
     const [firstName, setFirstName] = useState('');
