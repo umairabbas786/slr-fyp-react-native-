@@ -442,14 +442,14 @@ const ConnectScreen = ({ navigation }) => {
           renderItem={
             selected === 'Lookup'
               ? UserRenderItem
-              : selected === 'Connects'
+              : selected === 'Connects(' + connect.length + ')'
                 ? InterestRenderItem
                 : ApprovedRenderItem
           }
           data={
             selected === 'Lookup'
               ? lookups
-              : selected === 'Connects'
+              : selected === 'Connects(' + connect.length + ')'
                 ? connect
                 : pending
           }
