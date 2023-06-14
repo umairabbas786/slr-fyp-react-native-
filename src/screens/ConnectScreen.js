@@ -222,6 +222,7 @@ const ConnectScreen = ({ navigation }) => {
   };
 
   const getScreenData = async () => {
+    setLoader(true)
     const token = await AsyncStorage.getItem('token');
 
     var myHeaders = new Headers();
@@ -425,12 +426,12 @@ const ConnectScreen = ({ navigation }) => {
             setSelected={setSelected}
           />
           <CustomTopBarELement
-            tag={'Connects'}
+            tag={'Connects(' + connect.length + ')'}
             selected={selected}
             setSelected={setSelected}
           />
           <CustomTopBarELement
-            tag={'Pending'}
+            tag={'Pending(' + pending.length + ')'}
             selected={selected}
             setSelected={setSelected}
           />

@@ -10,17 +10,6 @@ import AnimatedLoader from 'react-native-animated-loader';
 import { Image } from 'react-native';
 import showTimeAgo from "showtimeago";
 
-const data = [
-    { status: true },
-    { status: true },
-    { status: true },
-    { status: true },
-    { status: false },
-    { status: false },
-    { status: false },
-    { status: false },
-];
-
 function NotificationScreen({ navigation }) {
 
     const [notifications, setNotifications] = useState([]);
@@ -111,7 +100,7 @@ function NotificationScreen({ navigation }) {
                 speed={1}>
             </AnimatedLoader>
             <View style={styles.profileMainContainer}>
-                <Header back={() => navigation.goBack()} tag="Notifications" />
+                <Header back={() => navigation.goBack()} tag={'Notifications'} />
                 <View style={{ height: 10 }} />
                 <FlatList
                     data={notifications}
