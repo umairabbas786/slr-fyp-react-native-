@@ -1,17 +1,17 @@
-import { ActionTypes } from "../constants/actionTypes";
+import {ActionTypes} from '../constants/actionTypes';
 
 const initialState = {
-    user: [],
+  user: [],
 };
 
 export const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ActionTypes.SET_USER:
-            return {
-                ...state,
-                user: action.payload,
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case ActionTypes.SET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    default:
+      return state;
+  }
 };

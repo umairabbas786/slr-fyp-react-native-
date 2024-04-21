@@ -160,7 +160,7 @@ const PostScreen = ({ navigation }) => {
                 borderColor: '#0B2265',
                 borderWidth: 1,
                 height: 200,
-                marginHorizontal: 10
+                marginHorizontal: 10,
               }}
             />
           </ScrollView>
